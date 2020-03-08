@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file is part of an Adiczion's Module.
+The COPYRIGHT and LICENSE files at the top level of this repository
+contains the full copyright notices and license terms. -->
+<odoo>
+    <record id="view_picking_withcarrier_out_form_chronopost" model="ir.ui.view">
+        <field name="name">delivery.stock.picking_withcarrier.form.view.chronopost</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='carrier_data']/field[@name='carrier_id']" position="after">
+                <field name="cpst_product_code" attrs="{'invisible': True}"/>
+                <div class="text-muted">
+                    open the wizard for selecting a relay point address.
+                </div>
+                <button type='object' class="fa fa-arrow-right oe_link"
+                    name="action_get_relaypoint" string="Selection of a relay point"
+                    attrs="{'invisible': ['|', ('cpst_product_code', '!=', '86'), ('state', 'in', ('done', 'cancel'))]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

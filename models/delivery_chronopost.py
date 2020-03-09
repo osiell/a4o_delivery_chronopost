@@ -40,7 +40,7 @@ class ProviderChronopost(models.Model):
     cpst_test_account_number = fields.Char(
         string='Account Number (test)', groups="base.group_system", size=8,
         help="Test account number, will be used when this carrier has gone "
-             "'into production'.")
+             "'into test'.")
     cpst_test_sub_account = fields.Char(
         string='Sub Account (test)', default='000', size=3,
         groups="base.group_system",
@@ -48,7 +48,7 @@ class ProviderChronopost(models.Model):
     cpst_test_passwd = fields.Char(
         string='Password (test)', groups="base.group_system", size=6,
         help="Test password, will be used when this carrier has gone "
-             "'into production'.")
+             "'into test'.")
     cpst_label_format = fields.Selection([
         ('PDF', 'PDF'),
         ('Z2D', 'Z2D'),

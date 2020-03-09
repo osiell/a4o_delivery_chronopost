@@ -1,0 +1,515 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* a4o_delivery_chronopost
+#
+# Christophe <xt0ph@adiczion.net>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-09 08:04+0000\n"
+"PO-Revision-Date: 2020-03-09 09:12+0100\n"
+"Last-Translator: Christophe <xt0ph@adiczion.net>\n"
+"Language-Team: French <kde-i18n-doc@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Lokalize 2.0\n"
+
+#. module: a4o_delivery_chronopost
+#: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.view_delivery_carrier_form_with_provider_chronopost
+msgid "123456"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:647
+#, python-format
+msgid "A value for the field '%s' is required!(value: %s)!"
+msgstr "Une valeur pour le champ '%s' est requise (Valeur : %s) !"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_prod_account_number
+msgid "Account Number (prod.)"
+msgstr "Numéro de compte (prod.)"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_test_account_number
+msgid "Account Number (test)"
+msgstr "Numéro de compte (test)"
+
+#. module: a4o_delivery_chronopost
+#: selection:delivery.carrier,delivery_type:0
+msgid "Based on Rules"
+msgstr "Fondé sur des règles"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_product_packaging__package_carrier_type
+msgid "Carrier"
+msgstr "Transporteur"
+
+#. module: a4o_delivery_chronopost
+#: selection:delivery.carrier,delivery_type:0
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_res_config_settings__module_a4o_delivery_chronopost
+#: selection:product.packaging,package_carrier_type:0
+msgid "Chronopost"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:45
+#, python-format
+msgid "Chronopost Agency"
+msgstr "Agence Chronopost"
+
+#. module: a4o_delivery_chronopost
+#: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.view_delivery_carrier_form_with_provider_chronopost
+msgid "Chronopost Configuration"
+msgstr "Configuration Chronopost"
+
+#. module: a4o_delivery_chronopost
+#: model:delivery.carrier,name:a4o_delivery_chronopost.delivery_carrier_chronopost_dangerous_express
+msgid "Chronopost Dangerous Express"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.res_config_settings_view_form_sale
+#: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.res_config_settings_view_form_stock
+msgid "Chronopost Delivery Methods"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: model:delivery.carrier,name:a4o_delivery_chronopost.delivery_carrier_chronopost_express
+msgid "Chronopost Express (1)"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: model:delivery.carrier,name:a4o_delivery_chronopost.delivery_carrier_chronopost_express_2
+msgid "Chronopost Express (2)"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: model:product.product,name:a4o_delivery_chronopost.product_product_delivery_chronopost_13
+#: model:product.template,name:a4o_delivery_chronopost.product_product_delivery_chronopost_13_product_template
+msgid "Chronopost Express (Chrono 13)"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: model:delivery.carrier,name:a4o_delivery_chronopost.delivery_carrier_chronopost_relay
+msgid "Chronopost Express Relais"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: model:product.product,name:a4o_delivery_chronopost.product_product_delivery_chrono_dangerous_13
+#: model:product.product,name:a4o_delivery_chronopost.product_product_delivery_chrono_relay_13
+#: model:product.template,name:a4o_delivery_chronopost.product_product_delivery_chrono_dangerous_13_product_template
+#: model:product.template,name:a4o_delivery_chronopost.product_product_delivery_chrono_relay_13_product_template
+msgid "Chronopost Relay (Chrono Relay 13)"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/delivery_chronopost.py:164
+#, python-format
+msgid "Chronopost expedition with tracking number %s canceled!"
+msgstr "Expédition Chronopost avec le(s) numéro(s) de suivi %s annulée !"
+
+#. module: a4o_delivery_chronopost
+#: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.res_config_settings_view_form_sale
+#: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.res_config_settings_view_form_stock
+msgid "Compute shipping costs and ship with Chronopost"
+msgstr "Calculez les frais d'expédition et expédiez avec Chronopost"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model,name:a4o_delivery_chronopost.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de config"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model,name:a4o_delivery_chronopost.model_delivery_carrier
+msgid "Delivery Methods"
+msgstr "Méthodes de livraison"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model,name:a4o_delivery_chronopost.model_delivery_carrier_relaypoint
+msgid "Delivery Relay Point"
+msgstr "Livraison en point relais"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model,name:a4o_delivery_chronopost.model_delivery_carrier_relaypoint_line
+msgid "Delivery Relay Point Line"
+msgstr "Ligne de point relais"
+
+#. module: a4o_delivery_chronopost
+#: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.view_delivery_carrier_form_with_provider_chronopost
+msgid "Details"
+msgstr "Détails"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:768
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:816
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:852
+#, python-format
+msgid "Error from Chronopost API: %s"
+msgstr "Erreur de l'API Chronopost : %s"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:826
+#, python-format
+msgid "Error when cancelling sending parcel '%s': %s(%s)."
+msgstr "Erreur lors de l'annulation de l'envoi du colis '%s' : %s (%s)."
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:778
+#, python-format
+msgid "Error when retrieve label: %s(%s)"
+msgstr "Erreur lors de la récupération de l'étiquette : %s (%s)"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:862
+#, python-format
+msgid "Error when retrieve relay points: %s(%s)"
+msgstr "Erreur lors de la récupération des points relais : %s (%s)"
+
+#. module: a4o_delivery_chronopost
+#: selection:delivery.carrier,delivery_type:0
+msgid "Fixed Price"
+msgstr "Forfait"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:55
+#, python-format
+msgid "Friday"
+msgstr "Vendredi"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_label_format
+msgid "Label Format"
+msgstr "Format étiquette"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/delivery_chronopost.py:139
+#, python-format
+msgid "Label_Chronopost-%s.%s"
+msgstr "Étiquette_Chronopost-%s.%s"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/delivery_chronopost.py:135
+#, python-format
+msgid "Label_Chronopost.pdf"
+msgstr "Étiquette_Chronopost.pdf"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_max_point
+msgid "Max number of relay points returned by the search request."
+msgstr "Nombre maximum de points relais renvoyés par la demande de recherche."
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_distance_search
+msgid "Maximum search distance of relay points in the request."
+msgstr "Distance de recherche maximale des points relais dans la demande."
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:51
+#, python-format
+msgid "Monday"
+msgstr "Lundi"
+
+#. module: a4o_delivery_chronopost
+#: selection:product.packaging,package_carrier_type:0
+msgid "No carrier integration"
+msgstr "Aucune intégration avec un transporteur"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/delivery_chronopost.py:78
+#, python-format
+msgid "Only digit chars are authorised in this field!"
+msgstr "Seuls les caractères numériques sont autorisés dans ce champ!"
+
+#. module: a4o_delivery_chronopost
+#: selection:delivery.carrier,cpst_label_format:0
+msgid "PDF"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_prod_passwd
+msgid "Password (prod.)"
+msgstr "Mot de passe (prod.)"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_test_passwd
+msgid "Password (test)"
+msgstr "Mot de passe (test)"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:46
+#, python-format
+msgid "Post office"
+msgstr "Bureau de poste"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__product_code
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_stock_picking__cpst_product_code
+msgid "Product Code"
+msgstr "Code produit"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model,name:a4o_delivery_chronopost.model_product_packaging
+msgid "Product Packaging"
+msgstr "Emballage des produits"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__product_code
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_stock_picking__cpst_product_code
+msgid "Product code defined on the contract signed with Chronopost"
+msgstr "Code produit défini sur le contrat signé avec Chronopost"
+
+#. module: a4o_delivery_chronopost
+#: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.view_delivery_carrier_form_with_provider_chronopost
+msgid "Production"
+msgstr "Fabrication"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_prod_account_number
+msgid ""
+"Production account number, will be used when this carrier has gone 'into"
+" production'."
+msgstr ""
+"Le numéro de compte de production sera utilisé lorsque ce transporteur sera"
+" entré «en production»."
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_prod_passwd
+msgid ""
+"Production password, will be used when this carrier has gone 'into"
+" production'."
+msgstr ""
+"e mot de passe de production sera utilisé lorsque ce transporteur sera entré"
+" «en production»."
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_prod_sub_account
+msgid "Production sub-account number, can remain empty."
+msgstr "Numéro de sous-compte de production, peut rester vide."
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__delivery_type
+msgid "Provider"
+msgstr "Fournisseur"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_relaypoint_url
+msgid "Relay Point URL"
+msgstr "URL du point de relais"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_max_point
+msgid "Relay Points Max"
+msgstr "Points relais max."
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:47
+#, python-format
+msgid "Relay point"
+msgstr "Point relais"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_remove_label
+msgid "Remove attached label"
+msgstr "Suppression des étiquettes attachées"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:56
+#, python-format
+msgid "Saturday"
+msgstr "Samedi"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_distance_search
+msgid "Search distance"
+msgstr "Distance de recherche"
+
+#. module: a4o_delivery_chronopost
+#: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.view_picking_withcarrier_out_form_chronopost
+msgid "Selection of a relay point"
+msgstr "Sélection d'un point relais"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/delivery_chronopost.py:128
+#, python-format
+msgid ""
+"Shipment created into Chronopost<br/> <b>Tracking Numbers:</b> %s<br/><b"
+">Packages:</b> %s"
+msgstr ""
+"Envoi créé dans Chronopost <br/> <b> Numéros de suivi :</b> %s<br/> <b> Colis"
+" : </b>%s"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_shipping_url
+msgid "Shipping URL"
+msgstr "URL de livraison"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:668
+#, python-format
+msgid "Some field are missing: %s"
+msgstr "Certains champs sont manquants : %s"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:753
+#, python-format
+msgid "Some products have not been put in packages!"
+msgstr "Certains produits n'ont pas été emballés !"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_prod_sub_account
+msgid "Sub Account (prod.)"
+msgstr "Sous-compte (prod.)"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_test_sub_account
+msgid "Sub Account (test)"
+msgstr "Sous-compte (test)"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:57
+#, python-format
+msgid "Sunday"
+msgstr "Dimanche"
+
+#. module: a4o_delivery_chronopost
+#: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.view_delivery_carrier_form_with_provider_chronopost
+msgid "Test"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_test_account_number
+msgid ""
+"Test account number, will be used when this carrier has gone 'into"
+" test'."
+msgstr ""
+"Le numéro de compte de test sera utilisé lorsque ce transporteur sera «en"
+" test»."
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_test_passwd
+msgid ""
+"Test password, will be used when this carrier has gone 'into test'."
+msgstr ""
+"Le mot de passe de test sera utilisé lorsque ce transporteur sera entré «en"
+" test»."
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_test_sub_account
+msgid "Test sub-account number, can remain empty."
+msgstr "Numéro de sous-compte de test, peut rester vide."
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:653
+#, python-format
+msgid ""
+"The value of the field '%s' doesn't respect the expected conditions"
+" (conditions: %s, value: %s)!"
+msgstr ""
+"La valeur du champ '%s' ne respecte pas les conditions attendues (conditions"
+" : %s, valeur : %s) !"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/delivery_chronopost.py:80
+#, python-format
+msgid "This field must have to %s characters!"
+msgstr "Ce champ doit contenir jusqu'à %s caractères !"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:54
+#, python-format
+msgid "Thursday"
+msgstr "Jeudi"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_tracking_url
+msgid "Tracking URL"
+msgstr "URL de suivi"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model,name:a4o_delivery_chronopost.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:52
+#, python-format
+msgid "Tuesday"
+msgstr "Mardi"
+
+#. module: a4o_delivery_chronopost
+#: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.view_delivery_carrier_form_with_provider_chronopost
+msgid "URL(s)"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: model:product.product,uom_name:a4o_delivery_chronopost.product_product_delivery_chrono_dangerous_13
+#: model:product.product,uom_name:a4o_delivery_chronopost.product_product_delivery_chrono_relay_13
+#: model:product.product,uom_name:a4o_delivery_chronopost.product_product_delivery_chronopost_13
+#: model:product.template,uom_name:a4o_delivery_chronopost.product_product_delivery_chrono_dangerous_13_product_template
+#: model:product.template,uom_name:a4o_delivery_chronopost.product_product_delivery_chrono_relay_13_product_template
+#: model:product.template,uom_name:a4o_delivery_chronopost.product_product_delivery_chronopost_13_product_template
+msgid "Unit(s)"
+msgstr "Unité(s)"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_relaypoint_url
+msgid "WSDL url for searching relay point."
+msgstr "URL WSDL de recherche des points relais."
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_shipping_url
+msgid "WSDL url for shipping."
+msgstr "URL WSDL pour l'expédition."
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_tracking_url
+msgid "WSDL url for tracking and cancelling."
+msgstr "URL WSDL pour le suivi et l'annulation."
+
+#. module: a4o_delivery_chronopost
+#: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:53
+#, python-format
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_remove_label
+msgid "When canceling a shipment, remove the attached labels."
+msgstr "Quand une expédition est annulée, supprime les étiquettes attachées."
+
+#. module: a4o_delivery_chronopost
+#: selection:delivery.carrier,cpst_label_format:0
+msgid "Z2D"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: selection:delivery.carrier,cpst_label_format:0
+msgid "ZPL300"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.view_delivery_carrier_form_with_provider_chronopost
+msgid "https://server.com/folder/WebService?wsdl"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: model:product.product,weight_uom_name:a4o_delivery_chronopost.product_product_delivery_chrono_dangerous_13
+#: model:product.product,weight_uom_name:a4o_delivery_chronopost.product_product_delivery_chrono_relay_13
+#: model:product.product,weight_uom_name:a4o_delivery_chronopost.product_product_delivery_chronopost_13
+#: model:product.template,weight_uom_name:a4o_delivery_chronopost.product_product_delivery_chrono_dangerous_13_product_template
+#: model:product.template,weight_uom_name:a4o_delivery_chronopost.product_product_delivery_chrono_relay_13_product_template
+#: model:product.template,weight_uom_name:a4o_delivery_chronopost.product_product_delivery_chronopost_13_product_template
+msgid "kg"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.view_picking_withcarrier_out_form_chronopost
+msgid "open the wizard for selecting a relay point address."
+msgstr "ouvre l'assistant de sélection d'une adresse de point relais."
+
+

@@ -598,7 +598,7 @@ class ChronopostRequest():
         self.debug_logger = debug_logger
         self.client = None
         self.prod_environment = prod_environment
-    
+
     def _set_credential(self, carrier):
         if not self.prod_environment:
             self.credential = {
@@ -612,7 +612,7 @@ class ChronopostRequest():
                 'sub_account': carrier.cpst_prod_sub_account,
                 'password': carrier.cpst_prod_passwd,
                 }
-    
+
     def _model_keys(self, model):
         keys = []
         for item in model:
@@ -623,15 +623,9 @@ class ChronopostRequest():
             else:
                 keys.append(key)
         return keys
-    
+
     def _chronopost_request(self, service):
         self.client = Client(service)
-    
-    def _get_mode_retour(self):
-        return '2'
-    
-    def _get_version(self):
-        return '2.0'
 
     def _check_conditions(self, value, content):
         """
@@ -655,7 +649,7 @@ class ChronopostRequest():
                     "conditions (conditions: %s, value: %s)!") % (
                         content.get('dst'), regexp, value))
         return value
-        
+
     def _check_required(self, model, value):
         # Get all field must be present
         must_fields = [k for k,v in model.items() if v.get('required')]
@@ -760,6 +754,7 @@ class ChronopostRequest():
         keys = self._model_keys(model)
         data = self._build_values(model, picking)
         values = [data[key] for key in keys]
+        _logger.debug("shipping_request: %s" % values)
         try:
             # Beware the query must respect the field order
             self.response = self.client.service.shippingMultiParcelV3(*values)
@@ -806,11 +801,15 @@ class ChronopostRequest():
                 result.append(number)
                 continue
             # we are in production ... continue.
+            values = [
+                self.credential.get('account_number'),
+                self.credential.get('password'),
+                language, number.strip()]
+            _logger.debug("cancel_request: %s" % values)
             try:
+                _logger.debug("cancel_request: %s" % values)
                 # Beware the query must respect the field order
-                self.response = self.client.service.cancelSkybill(
-                    self.credential.get('account_number'),
-                    self.credential.get('password'), language, number.strip())
+                self.response = self.client.service.cancelSkybill(*values)
             except WebFault as e:
                 _logger.error('Error from Chronopost API: %s' % e)
                 raise UserError(_('Error from Chronopost API: %s') % (e))
@@ -842,7 +841,7 @@ class ChronopostRequest():
         keys = self._model_keys(model)
         data = self._build_values(model, picking)
         values = [data[key] for key in keys]
-        print(values)
+        _logger.debug("relaypoint_request: %s" % values)
         try:
             # Beware the query must respect the field order
             self.response = self.client.service.recherchePointChronopost(

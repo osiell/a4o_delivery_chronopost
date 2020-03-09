@@ -10,7 +10,8 @@ contains the full copyright notices and license terms. -->
         <field name="arch" type="xml">
             <xpath expr="//group[@name='carrier_data']/field[@name='carrier_id']" position="after">
                 <field name="cpst_product_code" attrs="{'invisible': True}"/>
-                <div class="text-muted">
+                <div class="text-muted"
+                     attrs="{'invisible': ['|', ('cpst_product_code', '!=', '86'), ('state', 'in', ('done', 'cancel'))]}">
                     open the wizard for selecting a relay point address.
                 </div>
                 <button type='object' class="fa fa-arrow-right oe_link"

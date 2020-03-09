@@ -13,7 +13,7 @@
         'mail',
         'a4o_delivery_relaypoint'
     ],
-    'external_dependencies': {'python': ['suds', 'magicattr']},
+    'external_dependencies': {'python': ['suds']},
     'demo': [],
     'website': 'http://adiczion.com',
     'description': """

@@ -3,6 +3,7 @@
 # The COPYRIGHT and LICENSE files at the top level of this repository
 # contains the full copyright notices and license terms.
 from odoo import api, models, fields, _
+from odoo.exceptions import UserError
 from odoo.tools import pdf
 from .chronopost_request import ChronopostRequest
 import re
@@ -105,9 +106,9 @@ class ProviderChronopost(models.Model):
         res = []
         cpst = ChronopostRequest(self.prod_environment, self.log_xml)
         for picking in pickings:
-            package_count = len(picking.package_ids) or 1
-            _logger.debug(
-                "chronopost_send_shipping: Pack. count: %s" % package_count)
+            package_count = len(picking.package_ids)
+            if not package_count:
+                raise UserError(_('No packages for this picking!'))
             shipping = cpst.shipping_request(picking, self)
             carrier_tracking_ref = shipping['tracking_number']
             

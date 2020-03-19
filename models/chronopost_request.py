@@ -13,6 +13,7 @@ import re
 import binascii
 
 _logger = logging.getLogger(__name__)
+#logging.getLogger('suds.transport').setLevel(logging.DEBUG)
 
 """"
 <MODEL_NAME> = [
@@ -66,6 +67,7 @@ SHIPPINGMULTIPARCELV3 = [
     # headerValue
     {
         'struct': 'headerValue',
+        'required': True,
         'content': [
             {
                 'dst': 'idEmit',
@@ -92,6 +94,7 @@ SHIPPINGMULTIPARCELV3 = [
     #shipperValueV2 []
     {
         'struct': 'shipperValueV2',
+        'required': True,
         'loop': "[1]",
         'content': [
             {
@@ -122,6 +125,7 @@ SHIPPINGMULTIPARCELV3 = [
             {
                 'dst': 'shipperAdress2',
                 'src': 'picking.company_id.partner_id.street2',
+                'default': '',
                 'max_size': 38,
                 },
             {
@@ -153,6 +157,7 @@ SHIPPINGMULTIPARCELV3 = [
             {
                 'dst': 'shipperMobilePhone',
                 'src': 'picking.company_id.partner_id.mobile',
+                'default': '',
                 'max_size': 17,
                 },
             {
@@ -167,6 +172,7 @@ SHIPPINGMULTIPARCELV3 = [
     # customerValue
     {
         'struct': 'customerValue',
+        'required': True,
         'content': [
             {
                 'dst': 'customerCivility',
@@ -244,6 +250,7 @@ SHIPPINGMULTIPARCELV3 = [
     # recipientValueV2 []
     {
         'struct': 'recipientValueV2',
+        'required': True,
         'loop': "[1]",
         'content': [
             #{
@@ -331,6 +338,7 @@ SHIPPINGMULTIPARCELV3 = [
     # refValueV2 [x]
     {
         'struct': 'refValueV2',
+        'required': True,
         'loop': "picking.move_line_ids.mapped('result_package_id')",
         'content': [
             {'dst': 'customerSkybillNumber', 'default': '',},
@@ -362,6 +370,7 @@ SHIPPINGMULTIPARCELV3 = [
     # skybillWithDimensionsValueV5 [x]
     {
         'struct': 'skybillWithDimensionsValueV5',
+        'required': True,
         'loop': "picking.move_line_ids.mapped('result_package_id')",
         'content': [
             {'dst': 'bulkNumber', 'default': '1',},
@@ -420,13 +429,15 @@ SHIPPINGMULTIPARCELV3 = [
                 },
             {
                 'dst': 'shipHour',
-                'default': '18',
-                #'compute': '_get_weight',
-                #'args': ''
+                'src': "datetime.now().strftime('%H')",
+                #'default': '18',
+                'required': True,
                 },
             {
                 'dst': 'shipDate',
-                'default': '2018-11-14T15:29:36+02:00',
+                'src': "datetime.now().strftime('%d/%m/%Y')",
+                #'default': '2018-11-14T15:29:36+02:00',
+                'required': True,
                 },
             {
                 'dst': 'weight',
@@ -457,6 +468,7 @@ SHIPPINGMULTIPARCELV3 = [
     # skybillParamsValueV2
     {
         'struct': 'skybillParamsValueV2',
+        'required': True,
         'content': [
             {
                 'dst': 'duplicata',
@@ -498,10 +510,12 @@ SHIPPINGMULTIPARCELV3 = [
             {
                 'dst': 'version',
                 'default': '2.0',
+                'required': True,
                 },
             {
                 'dst': 'multiparcel',
                 'src': ("'Y' if len(picking.move_line_ids.mapped('result_package_id')) > 1 else 'N'"),
+                'required': True,
                 },
             ],
         },
@@ -613,15 +627,19 @@ class ChronopostRequest():
                 'password': carrier.cpst_prod_passwd,
                 }
 
-    def _model_keys(self, model):
+    def _model_keys(self, model, required=False):
         keys = []
         for item in model:
             key = item.get('struct')
-            if not key:
+            if not key and not required:
                 for content in item.get('content'):
                     keys.append(content.get('dst'))
             else:
-                keys.append(key)
+                if not required:
+                    keys.append(key)
+                else:
+                    if item.get('required'):
+                        keys.append(key)
         return keys
 
     def _chronopost_request(self, service):
@@ -753,8 +771,17 @@ class ChronopostRequest():
         model = SHIPPINGMULTIPARCELV3
         keys = self._model_keys(model)
         data = self._build_values(model, picking)
+        
+        # Test required items ...
+        required_keys = self._model_keys(model, required=True)
+        if required_keys:
+            not_present = [key for key in required_keys if not data[key]]
+            if not_present:
+                raise UserError(
+                    _("Values are not present to obtain a label: "
+                      "%s" % not_present))
+        
         values = [data[key] for key in keys]
-        _logger.debug("shipping_request: %s" % values)
         try:
             # Beware the query must respect the field order
             self.response = self.client.service.shippingMultiParcelV3(*values)

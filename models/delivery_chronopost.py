@@ -75,10 +75,10 @@ class ProviderChronopost(models.Model):
         help="Maximum search distance of relay points in the request.")
 
     def _check_value(self, value, size):
-        if re.search("[^0-9]", value):
-            raise UserError(_('Only digit chars are authorised in this field!'))
         if len(value) != size:
             raise UserError(_('This field must have to %s characters!') % size)
+        if re.search("[^0-9]", value):
+            raise UserError(_('Only digit chars are authorised in this field!'))
         return value
 
     @api.onchange('cpst_prod_account_number')

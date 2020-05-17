@@ -679,7 +679,7 @@ class ChronopostRequest():
             raise UserError(
                 _('Some field are missing: %s') % ', '.join(list(not_present)))
 
-    def _build_item(self, content, picking, options=None):
+    def _build_value(self, content, picking, options=None):
         """ """
         value = None
         source = content.get('src')
@@ -701,9 +701,9 @@ class ChronopostRequest():
             if struct:
                 setattr(
                     struct, item.get('dst'),
-                    self._build_item(item, picking, options))
+                    self._build_value(item, picking, options))
             res.update(
-                {item.get('dst'): self._build_item(item, picking, options)})
+                {item.get('dst'): self._build_value(item, picking, options)})
         return struct or res
 
     def _build_values(self, model, picking, options=None):

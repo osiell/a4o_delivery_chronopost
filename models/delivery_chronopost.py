@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 
 #class RelayPointChronopost(models.Model):
 #    _inherit = 'delivery.carrier.relaypoint'
-#    
+#
 #    cpst_url_google_maps = fields.Char(
 #        string='URL Google Maps', groups="base.group_system")
 
@@ -83,23 +83,27 @@ class ProviderChronopost(models.Model):
 
     @api.onchange('cpst_prod_account_number')
     def onchange_cpst_prod_account_number(self):
-        self.cpst_prod_account_number = self._check_value(
-            self.cpst_prod_account_number, 8)
-    
+        if self.cpst_test_account_number:
+            self.cpst_prod_account_number = self._check_value(
+                self.cpst_prod_account_number, 8)
+
     @api.onchange('cpst_test_account_number')
     def onchange_cpst_test_account_number(self):
-        self.cpst_test_account_number = self._check_value(
-            self.cpst_test_account_number, 8)
-    
+        if self.cpst_test_account_number:
+            self.cpst_test_account_number = self._check_value(
+                self.cpst_test_account_number, 8)
+
     @api.onchange('cpst_prod_passwd')
     def onchange_cpst_prod_passwd(self):
-        self.cpst_prod_passwd = self._check_value(
-            self.cpst_prod_passwd, 6)
-        
+        if self.cpst_prod_passwd:
+            self.cpst_prod_passwd = self._check_value(
+                self.cpst_prod_passwd, 6)
+
     @api.onchange('cpst_test_passwd')
     def onchange_cpst_test_passwd(self):
-        self.cpst_test_passwd = self._check_value(
-            self.cpst_test_passwd, 6)
+        if self.cpst_test_passwd:
+            self.cpst_test_passwd = self._check_value(
+                self.cpst_test_passwd, 6)
 
     def chronopost_send_shipping(self, pickings):
         _logger.debug("chronopost_send_shipping: begin")
@@ -111,7 +115,7 @@ class ProviderChronopost(models.Model):
                 raise UserError(_('No packages for this picking!'))
             shipping = cpst.shipping_request(picking, self)
             carrier_tracking_ref = shipping['tracking_number']
-            
+
             currency = (
                 picking.sale_id.currency_id or picking.company_id.currency_id)
             if currency.name == shipping['currency']:
@@ -123,7 +127,7 @@ class ProviderChronopost(models.Model):
                 carrier_price = quote_currency._convert(
                     float(shipping['price']), currency, company,
                     picking.sale_id.date_order or fields.Date.today())
-            
+
             package_labels = cpst.get_label()
             log_message = (
                 _("Shipment created into Chronopost<br/> "
@@ -147,7 +151,7 @@ class ProviderChronopost(models.Model):
                 }
             res += [shipping_data]
         return res
-    
+
     def chronopost_cancel_shipment(self, picking):
         cpst = ChronopostRequest(self.prod_environment, self.log_xml)
         result = cpst.cancel_request(picking, self)
@@ -168,7 +172,7 @@ class ProviderChronopost(models.Model):
                 'carrier_tracking_ref': '',
                 'carrier_price': 0.0,
                 })
-    
+
     def chronopost_get_tracking_link(self, picking):
         lang = 'en'
         if self.env.context.get('lang') == 'fr_FR':

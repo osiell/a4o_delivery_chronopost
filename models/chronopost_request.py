@@ -18,7 +18,7 @@ _logger = logging.getLogger(__name__)
 """"
 <MODEL_NAME> = [
     {
-        'struct': <name> # Define the name of the object that must be created, 
+        'struct': <name> # Define the name of the object that must be created,
                          # and filled with 'content'
         'content': [ # Definition of the content ///
             {
@@ -26,7 +26,7 @@ _logger = logging.getLogger(__name__)
                 'dst': <string>
                 'default': default value if 'src' isn't defined,
                 'required': must have a value (not only present)
-                'evaluate_default': if True the default value will be evaluate, else 
+                'evaluate_default': if True the default value will be evaluate, else
                             the default value is the value
                 'max_size': ...
                 },
@@ -261,15 +261,15 @@ SHIPPINGMULTIPARCELV3 = [
             #    },
             {
                 'dst': 'recipientName',
-                'src': 'picking.partner_id.name',
+                'src': ('picking.cpst_get_names().get("company") or '
+                        'picking.cpst_get_names().get("name")'),
                 'required': True,
                 'max_size': 100,
                 },
             {
                 'dst': 'recipientName2',
-                'src': ('picking.partner_id.parent_id '
-                            'and picking.partner_id.parent_id.display_name '
-                            'or picking.partner_id.display_name'),
+                'src': ('picking.cpst_get_names().get("company") and '
+                        'picking.cpst_get_names().get("name") or ""'),
                 'max_size': 100,
                 },
             {
@@ -280,7 +280,7 @@ SHIPPINGMULTIPARCELV3 = [
                 },
             {
                 'dst': 'recipientAdress2',
-                'src': 'picking.partner_id.street2',
+                'src': 'picking.partner_id.street2 or None',
                 'default': '',
                 'max_size': 38,
                 },
@@ -298,7 +298,7 @@ SHIPPINGMULTIPARCELV3 = [
                 },
             {
                 'dst': 'recipientCountry',
-                'src': 'picking.partner_id.country_id.code',
+                'src': 'picking.partner_id.country_id.code or None',
                 'default': 'FR',
                 'required': True,
                 'max_size': 2,
@@ -315,16 +315,18 @@ SHIPPINGMULTIPARCELV3 = [
             {
                 'dst': 'recipientMobilePhone',
                 'src': ('picking.partner_id.mobile '
-                        'or (picking.partner_id.parent_id '
-                            'and picking.partner_id.parent_id.mobile)'),
+                        'and (picking.partner_id.parent_id '
+                            'and picking.partner_id.parent_id.mobile) '
+                        'or None'),
                 'default': '',
                 'max_size': 17,
                 },
             {
                 'dst': 'recipientEmail',
                 'src': ('picking.partner_id.email '
-                        'or (picking.partner_id.parent_id '
-                            'and picking.partner_id.parent_id.email)'),
+                        'and (picking.partner_id.parent_id '
+                            'and picking.partner_id.parent_id.email) '
+                        'or None'),
                 'default': '',
                 'max_size': 80,
                 },
@@ -555,7 +557,7 @@ RECHERCHEPOINTCHRONOPOST = [
                 },
             {
                 'dst': 'countryCode',
-                'src': 'picking.partner_id.country_id.code',
+                'src': 'picking.partner_id.country_id and picking.partner_id.country_id.code or "FR"',
                 'default': 'FR',
                 'required': True,
                 },
@@ -683,14 +685,17 @@ class ChronopostRequest():
         """ """
         value = None
         source = content.get('src')
+        print('-------1source----', content.get('dst'), source)
         if source:
             value = eval(source)
+        print('-------2source----', content.get('dst'), source, value)
         if value is None:
             source = content.get('default')
             if content.get('evaluate_default'):
                 value = eval(source, globals())
             else:
                 value = source
+        print('-------3source----', content.get('dst'), source, value)
         value = self._check_conditions(value, content)
         return value
 
@@ -731,10 +736,10 @@ class ChronopostRequest():
             else:
                 values.update({struct: result})
         return values
-    
+
     def shipping_request(self, picking, carrier):
         """ Removal request to the carrier.
-        
+
             Model of method :
                 shippingMultiParcelV3(
                     esdValue3 esdValue,
@@ -763,7 +768,7 @@ class ChronopostRequest():
                 po.result_package_id is not False
                 for po in picking.move_line_ids]):
             raise UserError(_("Some products have not been put in packages!"))
-        
+
         # Init. some infos ...
         self._set_credential(carrier)
         self.client = Client(carrier.cpst_shipping_url)
@@ -771,7 +776,7 @@ class ChronopostRequest():
         model = SHIPPINGMULTIPARCELV3
         keys = self._model_keys(model)
         data = self._build_values(model, picking)
-        
+
         # Test required items ...
         required_keys = self._model_keys(model, required=True)
         if required_keys:
@@ -780,7 +785,7 @@ class ChronopostRequest():
                 raise UserError(
                     _("Values are not present to obtain a label: "
                       "%s" % not_present))
-        
+
         values = [data[key] for key in keys]
         try:
             # Beware the query must respect the field order
@@ -806,7 +811,7 @@ class ChronopostRequest():
                             for x in self.response.resultMultiParcelValue
                             ])})
         return result
-    
+
     def get_label(self):
         res = []
         for parcel in self.response.resultMultiParcelValue:
@@ -856,7 +861,7 @@ class ChronopostRequest():
                     if self.response.cancelSkybillResponse:
                         result.append(number)
         return result
-    
+
     def relaypoint_request(self, picking, carrier):
         result = []
         # Init. some infos ...

@@ -514,7 +514,8 @@ SHIPPINGMULTIPARCELV3 = [
                 },
             {
                 'dst': 'numberOfParcel',
-                'src': "len(picking.move_line_ids.mapped('result_package_id'))",
+                'src': ("len(picking.move_line_ids.mapped("
+                        "'result_package_id'))"),
                 'required': True,
                 },
             {
@@ -524,7 +525,8 @@ SHIPPINGMULTIPARCELV3 = [
                 },
             {
                 'dst': 'multiparcel',
-                'src': ("'Y' if len(picking.move_line_ids.mapped('result_package_id')) > 1 else 'N'"),
+                'src': ("'Y' if len(picking.move_line_ids.mapped("
+                        "'result_package_id')) > 1 else 'N'"),
                 'required': True,
                 },
             ],
@@ -565,7 +567,8 @@ RECHERCHEPOINTCHRONOPOST = [
                 },
             {
                 'dst': 'countryCode',
-                'src': 'picking.partner_id.country_id and picking.partner_id.country_id.code or "FR"',
+                'src': ('picking.partner_id.country_id '
+                        'and picking.partner_id.country_id.code or "FR"'),
                 'default': 'FR',
                 'required': True,
                 },
@@ -693,17 +696,14 @@ class ChronopostRequest():
         """ """
         value = None
         source = content.get('src')
-        print('-------1source----', content.get('dst'), source)
         if source:
             value = eval(source)
-        print('-------2source----', content.get('dst'), source, value)
         if value is None:
             source = content.get('default')
             if content.get('evaluate_default'):
                 value = eval(source, globals())
             else:
                 value = source
-        print('-------3source----', content.get('dst'), source, value)
         value = self._check_conditions(value, content)
         return value
 

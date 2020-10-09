@@ -1,6 +1,6 @@
 # Delivery Chronopost (a4o)
 
-[Add the description of your module here].
+Send your shippings through Chronopost and track them online.
 
 ## Installing
 
@@ -10,7 +10,7 @@ See INSTALL
 
 If you encounter any problems with this module, please don't hesitate to ask
 questions on the Adiczion support mail address :
-  
+
   support@adiczion.net
 
 ## License

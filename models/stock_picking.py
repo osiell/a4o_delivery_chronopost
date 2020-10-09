@@ -15,10 +15,11 @@ class StockPicking(models.Model):
         'Product Code', related='carrier_id.product_code')
 
     @api.depends('partner_id')
-    def cpst_get_names(self):
+    def cpst_get_names(self, parent=False):
         names = {
             'company': '',
-            'name': self.partner_id.name,
+            'name': (self.partner_id.name if not parent
+                else self.partner_id.parent_id.name),
             }
         if self.partner_id.parent_id and self.partner_id.parent_id.is_company:
             # if link to company get company name.

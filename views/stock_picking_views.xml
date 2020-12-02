@@ -13,16 +13,6 @@ contains the full copyright notices and license terms. -->
                     attrs="{'readonly': [('state', 'in', ('done')), ('carrier_tracking_ref','!=',False), ('delivery_type','!=',False), '|', ('state', 'in', ('cancel'))]}"
                     options="{'no_create': True, 'no_open': True}"/>
             </xpath>
-            <xpath expr="//group[@name='carrier_data']/field[@name='carrier_id']" position="after">
-                <field name="cpst_product_code" attrs="{'invisible': True}"/>
-                <div class="text-muted"
-                    attrs="{'invisible': ['|', ('cpst_product_code', '!=', '86'), ('state', 'in', ('done', 'cancel'))]}">
-                    open the wizard for selecting a relay point address.
-                </div>
-                <button type='object' class="fa fa-arrow-right oe_link"
-                    name="action_get_relaypoint" string="Selection of a relay point"
-                    attrs="{'invisible': ['|', ('cpst_product_code', '!=', '86'), ('state', 'in', ('done', 'cancel'))]}"/>
-            </xpath>
         </field>
     </record>
 </odoo>

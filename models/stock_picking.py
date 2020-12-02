@@ -11,8 +11,10 @@ _logger = logging.getLogger(__name__)
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
-    cpst_product_code = fields.Char(
-        'Product Code', related='carrier_id.product_code')
+    def chronopost_get_delivery_relaypoint(self):
+        if self.carrier_id.product_code == '86':
+            return True
+        return False
 
     @api.depends('partner_id')
     def cpst_get_names(self, parent=False):

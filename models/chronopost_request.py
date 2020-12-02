@@ -262,10 +262,10 @@ SHIPPINGMULTIPARCELV3 = [
             {
                 'dst': 'recipientName',
                 'src': ('picking.cpst_get_names(parent=True).get("company") '
-                            'if picking.cpst_product_code == "86" '
+                            'if picking.carrier_id.product_code == "86" '
                             'else picking.cpst_get_names().get("company") '
                         'or picking.cpst_get_names(parent=True).get("name") '
-                            'if picking.cpst_product_code == "86" '
+                            'if picking.carrier_id.product_code == "86" '
                             'else picking.cpst_get_names().get("name")'),
                 'required': True,
                 'max_size': 100,
@@ -273,10 +273,10 @@ SHIPPINGMULTIPARCELV3 = [
             {
                 'dst': 'recipientName2',
                 'src': ('picking.cpst_get_names(parent=True).get("company") '
-                            'if picking.cpst_product_code == "86" '
+                            'if picking.carrier_id.product_code == "86" '
                             'else picking.cpst_get_names().get("company") '
                         'or picking.cpst_get_names(parent=True).get("name") '
-                            'if picking.cpst_product_code == "86" '
+                            'if picking.carrier_id.product_code == "86" '
                             'else picking.cpst_get_names().get("name")'),
                 'max_size': 100,
                 },
@@ -356,7 +356,7 @@ SHIPPINGMULTIPARCELV3 = [
             {
                 'dst': 'recipientRef',
                 'src': ('picking.partner_id.code_relaypoint '
-                        'if picking.cpst_product_code == "86" '
+                        'if picking.carrier_id.product_code == "86" '
                         'else picking.origin'),
                 'required': True,
                 'max_size': 35,
@@ -370,7 +370,7 @@ SHIPPINGMULTIPARCELV3 = [
             {
                 'dst': 'idRelais',
                 'src': ('picking.partner_id.code_relaypoint '
-                        'if picking.cpst_product_code == "86" '
+                        'if picking.carrier_id.product_code == "86" '
                         'else ""'),
                 'required': True,
                 'max_size': 35,

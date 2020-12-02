@@ -4,7 +4,7 @@
 # contains the full copyright notices and license terms.
 {
     'name': 'Chronopost Shipping',
-    'version': '12.0.1',
+    'version': '13.0.1',
     'author': 'Adiczion SARL',
     'category': 'Adiczion',
     'license': 'AGPL-3',

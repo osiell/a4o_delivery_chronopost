@@ -8,6 +8,13 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
+class StockQuantPackage(models.Model):
+    _inherit = "stock.quant.package"
+
+    def chronopost_compute_mandatory_weight(self):
+        return True
+
+
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 

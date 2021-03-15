@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # This file is part of an Adiczion's Module.
 # The COPYRIGHT and LICENSE files at the top level of this repository
 # contains the full copyright notices and license terms.
@@ -16,6 +15,15 @@ _logger = logging.getLogger(__name__)
 #
 #    cpst_url_google_maps = fields.Char(
 #        string='URL Google Maps', groups="base.group_system")
+
+class Module(models.Model):
+    _inherit = "ir.module.module"
+
+    def button_immediate_upgrade(self):
+        super().button_immediate_upgrade()
+        for module in list(self):
+            if module.name == 'a4o_delivery_chronopost':
+                return self._button_immediate_function(type(self).button_upgrade)
 
 
 class ProviderChronopost(models.Model):
@@ -73,6 +81,60 @@ class ProviderChronopost(models.Model):
     cpst_distance_search = fields.Integer(
         string="Search distance", default=10,
         help="Maximum search distance of relay points in the request.")
+    cpst_direct_printing = fields.Boolean(
+        'Direct Printing',
+        default=False,
+        help="Directly print the label when the delivery is validate,"
+             "if the module : report_base_to_printer is installed")
+    cpst_printer_name = fields.Char()
+    cpst_printer_id = fields.Many2one('printing.printer',
+        string='Chronopost Printer',
+        compute='cpst_compute_printer_id',
+        help="printer")
+
+    @api.onchange('cpst_direct_printing')
+    def onchange_cpst_direct_printing(self):
+        result = {}
+        try:
+            printer = self.env['printing.printer']
+        except KeyError:
+            _logger.error('Please install and configure module :'
+                          'base_report_to_printer')
+            self.cpst_direct_printing = False
+            result['warning'] = {
+                'title': _('Error!'),
+                'message': _('Please install and configure module :'
+                             'base_report_to_printer')
+                }
+
+    @api.depends('cpst_printer_name')
+    def cpst_compute_printer_id(self):
+        for record in self:
+            record.cpst_printer_id = False
+            if record.cpst_printer_name:
+                record.cpst_printer_id = int(
+                    record.cpst_printer_name.split(',')[1])
+
+    def cpst_action_get_printer(self):
+        context = dict(self.env.context or {})
+        # Get printer
+        context.update({
+            'carrier_id': self.id,
+            'default_printer_id': (self.cpst_printer_id
+                and self.cpst_printer_id.id
+                or False),
+            })
+        return {
+            'name': _('Select the printer'),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'cpstselect.printer',
+            'view_id': self.env.ref(
+                'a4o_delivery_chronopost.cpst_select_printer_view_form').id,
+            'type': 'ir.actions.act_window',
+            'context': context,
+            'target': 'new'
+        }
 
     def _check_value(self, value, size):
         if len(value) != size:
@@ -135,16 +197,26 @@ class ProviderChronopost(models.Model):
                     "<b>Packages:</b> %s") % (
                         carrier_tracking_ref,
                         ', '.join([pl[0] for pl in package_labels])))
-            if self.cpst_label_format == 'PDF':
+
+            attachments = []
+            if picking.carrier_id.cpst_label_format == 'PDF':
+                labels = pdf.merge_pdf([pl[1] for pl in package_labels])
                 attachments = [(
-                        _('Label_Chronopost.pdf'),
-                        pdf.merge_pdf([pl[1] for pl in package_labels]))]
+                        _('Label_Chronopost.pdf'), labels)]
+                if picking.carrier_id.cpst_direct_printing:
+                    self._print_document(labels,
+                        picking.carrier_id.cpst_printer_id, picking)
             else:
-                attachments = [(
-                    _('Label_Chronopost-%s.%s') % (
-                        pl[0], self.cpst_label_format),
-                    pl[1]) for pl in package_labels]
+                for idx, label in enumerate([pl[1] for pl in package_labels]):
+                    attachments.append((
+                            _('Label_Chronopost-%s.%s') % (idx,
+                                self.cpst_label_format),
+                            label))
+                    if picking.carrier_id.cpst_direct_printing:
+                        self._print_document(label,
+                            picking.carrier_id.cpst_printer_id, picking)
             picking.message_post(body=log_message, attachments=attachments)
+
             shipping_data = {
                 'exact_price': carrier_price,
                 'tracking_number': carrier_tracking_ref,

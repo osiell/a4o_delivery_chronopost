@@ -125,7 +125,7 @@ class ProviderChronopost(models.Model):
                     ('name', '=', shipping['currency']),
                     ], limit=1)
                 carrier_price = quote_currency._convert(
-                    float(shipping['price']), currency, company,
+                    float(shipping['price']), currency, picking.company_id,
                     picking.sale_id.date_order or fields.Date.today())
 
             package_labels = cpst.get_label()
@@ -181,15 +181,19 @@ class ProviderChronopost(models.Model):
                 '&listeNumerosLT=%s' % (lang, picking.carrier_tracking_ref))
 
     def chronopost_rate_shipment(self, order):
-        res = {'success': False}
-        if order.delivery_price:
+        res = {
+            'success': False,
+            'price': 0.0,
+            'warning_message': _("Don't forget to check the price!"),
+            'error_message': None,
+            }
+        vals = self.base_on_rule_rate_shipment(order)
+        if vals.get('success'):
+            price = vals['price']
             res.update({
                 'success': True,
-                'price': order.delivery_price,
+                'price': price,
                 })
-        else:
-            # [TODO] Compute the price if ...
-            pass
         return res
 
     def chronopost_select_relaypoint(self, pickings):

@@ -760,7 +760,7 @@ class ChronopostRequest():
                     customsValue[] customsValue)
         """
         result = {
-            'price': 0.0,
+            'price': picking.get_delivery_price(),
             'currency': picking.company_id.currency_id.name,
             }
 

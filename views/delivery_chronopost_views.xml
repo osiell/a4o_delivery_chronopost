@@ -10,6 +10,13 @@ contains the full copyright notices and license terms. -->
         <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='destination']" position='before'>
+                <page name="chronopost_pricing" string="Pricing" attrs="{'invisible': [('delivery_type', '!=', 'chronopost')]}">
+                    <group name="general">
+                        <field name="price_rule_ids" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='destination']" position='after'>
                 <page string="Chronopost Configuration" attrs="{'invisible': [('delivery_type', '!=', 'chronopost')]}">
                     <group string="Details" id="details">
                         <group id="details-col1">

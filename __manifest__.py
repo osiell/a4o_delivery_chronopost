@@ -13,7 +13,7 @@
         'mail',
         'a4o_delivery_relaypoint'
     ],
-    'external_dependencies': {'python': ['suds']},
+    'external_dependencies': {'python': ['suds-community']},
     'demo': [],
     'website': 'http://adiczion.com',
     'description': """
@@ -26,11 +26,11 @@ Send your shippings through Chronopost and track them online.
     'data': [
         # 'security/objects_security.xml',
         # 'security/ir.model.access.csv',
-        # 'wizard/your_wizard_name.xml',
         'data/delivery_chronopost_data.xml',
         'views/delivery_chronopost_views.xml',
         'views/stock_picking_views.xml',
         'views/res_config_settings_views.xml',
+        'wizard/select_printer_views.xml',
     ],
     'images': ['static/description/banner.png'],
     'test': [],

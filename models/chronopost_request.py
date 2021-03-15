@@ -261,23 +261,15 @@ SHIPPINGMULTIPARCELV3 = [
             #    },
             {
                 'dst': 'recipientName',
-                'src': ('picking.cpst_get_names(parent=True).get("company") '
-                            'if picking.carrier_id.product_code == "86" '
-                            'else picking.cpst_get_names().get("company") '
-                        'or picking.cpst_get_names(parent=True).get("name") '
-                            'if picking.carrier_id.product_code == "86" '
-                            'else picking.cpst_get_names().get("name")'),
-                'required': True,
+                'src': ('picking.cpst_get_names(picking.partner_id, '
+                    'picking.original_partner_id).get("name1")'),
                 'max_size': 100,
+                'required': True,
                 },
             {
                 'dst': 'recipientName2',
-                'src': ('picking.cpst_get_names(parent=True).get("company") '
-                            'if picking.carrier_id.product_code == "86" '
-                            'else picking.cpst_get_names().get("company") '
-                        'or picking.cpst_get_names(parent=True).get("name") '
-                            'if picking.carrier_id.product_code == "86" '
-                            'else picking.cpst_get_names().get("name")'),
+                'src': ('picking.cpst_get_names(picking.partner_id, '
+                    'picking.original_partner_id).get("name2")'),
                 'max_size': 100,
                 },
             {

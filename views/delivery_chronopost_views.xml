@@ -23,6 +23,7 @@ contains the full copyright notices and license terms. -->
                             <field name="product_code" attrs="{'required': [('delivery_type', '=', 'chronopost')]}"/>
                             <field name="cpst_max_point" attrs="{'required': [('delivery_type', '=', 'chronopost')]}"/>
                             <field name="cpst_distance_search" attrs="{'required': [('delivery_type', '=', 'chronopost')]}"/>
+                            <field name="hide_partner" />
                         </group>
                         <group string="Printing Options" id="printing_opt">
                             <field name="cpst_label_format" attrs="{'required': [('delivery_type', '=', 'chronopost')]}"/>

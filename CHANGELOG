@@ -1,3 +1,5 @@
+Version 13.0.3 - 2021-07-15
+  * Adding an option to hide relaypoint added addresses
 Version 13.0.2 - 2021-03-15
   * Direct printing
   * Bug fixes (see commits for details)

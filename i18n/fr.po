@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 12:36+0000\n"
-"PO-Revision-Date: 2021-07-15 12:36+0000\n"
+"POT-Creation-Date: 2021-07-16 13:45+0000\n"
+"PO-Revision-Date: 2021-07-16 13:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -211,6 +211,11 @@ msgid "Error!"
 msgstr "Erreur !"
 
 #. module: a4o_delivery_chronopost
+#: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__pdf|xml
+msgid "For automaton in PO"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
 #: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:0
 #, python-format
 msgid "Friday"
@@ -224,7 +229,7 @@ msgstr "Cacher l'adresse Point Relais"
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__hide_partner
 msgid "Hide the relaypoint address on the partner when created"
-msgstr ""
+msgstr "Cacher l'adresse dans le partenaire à la création d'un point relais"
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_cpstselect_printer__id
@@ -298,8 +303,23 @@ msgstr "Seuls les caractères numériques sont autorisés dans ce champ!"
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__pdf
-msgid "PDF"
+msgid "PDF standard"
 msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__the
+msgid "PDF thermal printer without proof"
+msgstr "PDF imprimante thermique sans preuve"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__ppr
+msgid "PDF with relay points"
+msgstr "PDF avec point relais"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__spd
+msgid "PDF without proof"
+msgstr "PDF sans preuve"
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model,name:a4o_delivery_chronopost.model_stock_quant_package
@@ -494,6 +514,11 @@ msgid "Sunday"
 msgstr "Dimanche"
 
 #. module: a4o_delivery_chronopost
+#: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__thepsg
+msgid "THE format in landscape"
+msgstr "Format THE en paysage"
+
+#. module: a4o_delivery_chronopost
 #: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_test_account_number
 msgid ""
 "Test account number, will be used when this carrier has gone 'into test'."
@@ -567,7 +592,7 @@ msgstr ""
 #: model:product.template,uom_name:a4o_delivery_chronopost.product_product_delivery_chrono_relay_13_product_template
 #: model:product.template,uom_name:a4o_delivery_chronopost.product_product_delivery_chronopost_13_product_template
 msgid "Units"
-msgstr ""
+msgstr "Unités"
 
 #. module: a4o_delivery_chronopost
 #: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:0
@@ -602,14 +627,19 @@ msgid "When canceling a shipment, remove the attached labels."
 msgstr "Quand une expédition est annulée, supprime les étiquettes attachées."
 
 #. module: a4o_delivery_chronopost
-#: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__z2d
-msgid "Z2D"
+#: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__zpl300
+msgid "ZPL 300dpi for thermal printer"
 msgstr ""
 
 #. module: a4o_delivery_chronopost
-#: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__zpl300
-msgid "ZPL300"
+#: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__z2d
+msgid "ZPL for thermal printer"
 msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__z2dpsg
+msgid "ZPL format in landscape"
+msgstr "Format ZPL en paysage"
 
 #. module: a4o_delivery_chronopost
 #: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.view_delivery_carrier_form_with_provider_chronopost

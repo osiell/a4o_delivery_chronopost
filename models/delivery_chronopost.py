@@ -97,9 +97,8 @@ class ProviderChronopost(models.Model):
     @api.onchange('cpst_direct_printing')
     def onchange_cpst_direct_printing(self):
         result = {}
-        try:
-            printer = self.env['printing.printer']
-        except KeyError:
+        User = self.env['res.users']
+        if not hasattr(User, 'printing_printer_id'):
             _logger.error('Please install and configure module :'
                           'base_report_to_printer')
             self.cpst_direct_printing = False
@@ -108,6 +107,7 @@ class ProviderChronopost(models.Model):
                 'message': _('Please install and configure module :'
                              'base_report_to_printer')
                 }
+            return result
 
     @api.depends('cpst_printer_name')
     def cpst_compute_printer_id(self):

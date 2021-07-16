@@ -131,7 +131,7 @@ msgstr "Paramètres de config"
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_printer_name
 msgid "Cpst Printer Name"
-msgstr ""
+msgstr "Nom d'imprimante Cpst"
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_cpstselect_printer__create_uid
@@ -213,7 +213,7 @@ msgstr "Erreur !"
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__pdf|xml
 msgid "For automaton in PO"
-msgstr ""
+msgstr "Pour automaton dans PO"
 
 #. module: a4o_delivery_chronopost
 #: code:addons/a4o_delivery_chronopost/models/chronopost_request.py:0
@@ -404,8 +404,8 @@ msgid ""
 "Production password, will be used when this carrier has gone 'into "
 "production'."
 msgstr ""
-"e mot de passe de production sera utilisé lorsque ce transporteur sera entré"
-" «en production»."
+"Le mot de passe de production sera utilisé lorsque ce transporteur sera entré"
+" « en production »."
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_prod_sub_account
@@ -523,8 +523,8 @@ msgstr "Format THE en paysage"
 msgid ""
 "Test account number, will be used when this carrier has gone 'into test'."
 msgstr ""
-"Le numéro de compte de test sera utilisé lorsque ce transporteur sera «en "
-"test»."
+"Le numéro de compte de test sera utilisé lorsque ce transporteur sera « en "
+"test »."
 
 #. module: a4o_delivery_chronopost
 #: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.view_delivery_carrier_form_with_provider_chronopost
@@ -629,12 +629,12 @@ msgstr "Quand une expédition est annulée, supprime les étiquettes attachées.
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__zpl300
 msgid "ZPL 300dpi for thermal printer"
-msgstr ""
+msgstr "ZPL 300dpi pour imprimante thermique"
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__z2d
 msgid "ZPL for thermal printer"
-msgstr ""
+msgstr "ZPL pour imprimante thermique"
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__z2dpsg
@@ -653,7 +653,7 @@ msgid ""
 "installed."
 msgstr ""
 "ouvrir l'assistant de sélection d'une imprimante si le module "
-"[base_report_to_printer] estinstallé."
+"[base_report_to_printer] est installé."
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,help:a4o_delivery_chronopost.field_cpstselect_printer__printer_id

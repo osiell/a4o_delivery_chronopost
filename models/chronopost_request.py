@@ -35,6 +35,18 @@ _logger = logging.getLogger(__name__)
     { ... },
 """
 
+LABEL_FORMAT = [
+    ('PDF', 'PDF standard'),
+    ('PPR', 'PDF with relay points'),
+    ('SPD', 'PDF without proof'),
+    ('THE', 'PDF thermal printer without proof'),
+    ('THEPSG', 'THE format in landscape'),
+    ('Z2DPSG', 'ZPL format in landscape'),
+    ('Z2D', 'ZPL for thermal printer'),
+    ('PDF|XML', 'For automaton in PO'),
+    ('ZPL300', 'ZPL 300dpi for thermal printer'),
+    ]
+
 WEIGHT_REC20 = {
     't': 'TNE',
     'kg': 'KGM',

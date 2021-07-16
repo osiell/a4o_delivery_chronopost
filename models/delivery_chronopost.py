@@ -4,7 +4,7 @@
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError
 from odoo.tools import pdf
-from .chronopost_request import ChronopostRequest
+from .chronopost_request import ChronopostRequest, LABEL_FORMAT
 import re
 import logging
 
@@ -58,11 +58,8 @@ class ProviderChronopost(models.Model):
         string='Password (test)', groups="base.group_system", size=6,
         help="Test password, will be used when this carrier has gone "
              "'into test'.")
-    cpst_label_format = fields.Selection([
-        ('PDF', 'PDF'),
-        ('Z2D', 'Z2D'),
-        ('ZPL300', 'ZPL300'),
-    ], string="Label Format", required=True, default='PDF')
+    cpst_label_format = fields.Selection(LABEL_FORMAT, string="Label Format",
+        required=True, default='PDF')
     cpst_remove_label = fields.Boolean(
         'Remove attached label', default=False,
         help="When canceling a shipment, remove the attached labels.")

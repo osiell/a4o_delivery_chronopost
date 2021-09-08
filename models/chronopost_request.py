@@ -158,7 +158,11 @@ SHIPPINGMULTIPARCELV3 = [
                 'required': True,
                 'max_size': 2,
                 },
-            {'dst': 'shipperCountryName', 'default': 'FRANCE',},
+            {
+                'dst': 'shipperCountryName',
+                'src': 'picking.company_id.partner_id.country_id.name or None',
+                'default': '',
+                },
             {
                 'dst': 'shipperPhone',
                 'src': 'picking.company_id.partner_id.phone',
@@ -235,16 +239,20 @@ SHIPPINGMULTIPARCELV3 = [
                 'required': True,
                 'max_size': 2,
                 },
-            {'dst': 'customerCountryName','default': 'FRANCE',},
+            {
+                'dst': 'customerCountryName',
+                'src': 'picking.company_id.partner_id.country_id.name or None',
+                'default': '',
+                },
             {
                 'dst': 'customerPhone',
-                'src': 'picking.company_id.partner_id.phone',
+                'src': 'picking.company_id.partner_id.phone or None',
                 'default': '',
                 'max_size': 17,
                 },
             {
                 'dst': 'customerMobilePhone',
-                'src': 'picking.company_id.partner_id.mobile',
+                'src': 'picking.company_id.partner_id.mobile or None',
                 'default': '',
                 'max_size': 17,
                 },
@@ -314,12 +322,17 @@ SHIPPINGMULTIPARCELV3 = [
                 'required': True,
                 'max_size': 2,
                 },
-            {'dst': 'recipientCountryName', 'default': 'FRANCE',},
+            {
+                'dst': 'recipientCountryName',
+                'src': 'picking.partner_id.country_id.name or None',
+                'default': '',
+                },
             {
                 'dst': 'recipientPhone',
                 'src': ('picking.partner_id.phone '
                         'or (picking.partner_id.parent_id '
-                            'and picking.partner_id.parent_id.phone)'),
+                            'and picking.partner_id.parent_id.phone) '
+                            'or None'),
                 'default': '',
                 'max_size': 17,
                 },
@@ -360,13 +373,13 @@ SHIPPINGMULTIPARCELV3 = [
                 'dst': 'recipientRef',
                 'src': ('picking.partner_id.code_relaypoint '
                         'if picking.carrier_id.product_code == "86" '
-                        'else picking.origin'),
+                        'else "%s - %s" % (picking.name, picking.origin)'),
                 'required': True,
                 'max_size': 35,
                 },
             {
                 'dst': 'shipperRef',
-                'src': 'picking.name',
+                'src': '"%s - %s" % (picking.name, picking.origin)',
                 'required': True,
                 'max_size': 35,
                 },

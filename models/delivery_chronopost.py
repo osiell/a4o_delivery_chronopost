@@ -30,7 +30,8 @@ class ProviderChronopost(models.Model):
     _inherit = 'delivery.carrier'
 
     delivery_type = fields.Selection(
-        selection_add=[('chronopost', "Chronopost")])
+        selection_add=[('chronopost', "Chronopost")],
+        ondelete={'chronopost': 'set default'})
     product_code = fields.Char(
         string='Product Code', groups="base.group_system", size=2,
         help="Product code defined on the contract signed with Chronopost")

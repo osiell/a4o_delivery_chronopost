@@ -1,13 +1,2 @@
-Version 13.0.4 - 2021-07-16
-  * Add label formats
-  * Bug fixes (see commits for details)
-Version 13.0.3 - 2021-07-15
-  * Adding an option to hide relaypoint added addresses
-Version 13.0.2 - 2021-03-15
-  * Direct printing
-  * Bug fixes (see commits for details)
-Version 12.0.1 - 2020-10-09
-  * Optimized name retrieval for labels
-  * Some small fixes
-Version 12.0.0 - 2020-09-29
+Version 14.0.0 - 2021-09-11
   * Initial release

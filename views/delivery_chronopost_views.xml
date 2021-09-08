@@ -30,15 +30,15 @@ contains the full copyright notices and license terms. -->
                             <field name="cpst_remove_label" attrs="{'required': [('delivery_type', '=', 'chronopost')]}"/>
                             <field name="cpst_direct_printing"/>
                                 <div class="text-muted"
-                                        attrs="{'invisible': ['|', ('cpst_direct_printing', '=', False)]}">
+                                        attrs="{'invisible': [('cpst_direct_printing', '=', False)]}">
                                         open the wizard for selecting a printer if base_report_to_printer module is installed.
                                 </div>
                                 <button type='object' icon="fa-arrow-right" 
                                         class="btn-link"
                                         name="cpst_action_get_printer" string="Select a printer"
-                                        attrs="{'invisible': ['|', ('cpst_direct_printing', '=', False)]}"/>
+                                        attrs="{'invisible': [('cpst_direct_printing', '=', False)]}"/>
                             <field name="cpst_printer_name" invisible="1"/>
-                            <field name="cpst_printer_id" attrs="{'invisible': ['|', ('cpst_direct_printing', '=', False)]}"/>
+                            <field name="cpst_printer_id" attrs="{'invisible': [('cpst_direct_printing', '=', False)]}"/>
                         </group>
                     </group>
                     <group>

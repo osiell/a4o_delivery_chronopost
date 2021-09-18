@@ -175,7 +175,7 @@ class ProviderChronopost(models.Model):
             package_count = len(picking.package_ids)
             if not package_count:
                 raise UserError(_('No packages for this picking!'))
-            shipping = cpst.shipping_request(picking, self)
+            shipping = cpst.shipping_request(picking, self.sudo())
             carrier_tracking_ref = shipping['tracking_number']
 
             currency = (
@@ -226,7 +226,7 @@ class ProviderChronopost(models.Model):
 
     def chronopost_cancel_shipment(self, picking):
         cpst = ChronopostRequest(self.prod_environment, self.log_xml)
-        result = cpst.cancel_request(picking, self)
+        result = cpst.cancel_request(picking, self.sudo())
         if result:
             # Remove attachment ...
             if self.cpst_remove_label:
@@ -273,5 +273,5 @@ class ProviderChronopost(models.Model):
         relaypoints = []
         cpst = ChronopostRequest(self.prod_environment, self.log_xml)
         for picking in pickings:
-            relaypoints += cpst.relaypoint_request(picking, self)
+            relaypoints += cpst.relaypoint_request(picking, self.sudo())
         return relaypoints

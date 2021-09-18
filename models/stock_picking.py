@@ -18,6 +18,7 @@ class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
     def chronopost_get_delivery_relaypoint(self):
+        self = self.sudo()
         if self.carrier_id.product_code == '86':
             return True
         return False

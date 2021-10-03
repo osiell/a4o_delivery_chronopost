@@ -10,6 +10,7 @@ from suds.sudsobject import asdict
 import logging
 import re
 import binascii
+import copy
 
 _logger = logging.getLogger(__name__)
 # logging.getLogger('suds.transport').setLevel(logging.DEBUG)
@@ -399,8 +400,17 @@ SHIPPINGMULTIPARCELV3 = [
         'required': True,
         'loop': "picking.move_line_ids.mapped('result_package_id')",
         'content': [
-            {'dst': 'bulkNumber', 'default': '1',},
-            {'dst': 'skybillRank', 'default': '1',},
+            {
+                'dst': 'bulkNumber',
+                'src': "len(picking.move_line_ids.mapped("
+                    "'result_package_id'))",
+                'default': '1',
+                },
+            {
+                'dst': 'skybillRank',
+                'src': "options['number']",
+                'default': '1',
+                },
             {'dst': 'masterSkybillNumber', 'default': '',},
             {
                 'dst': 'codCurrency',
@@ -751,8 +761,10 @@ class ChronopostRequest():
                 loop = eval(loop, locals())
                 result = []
                 for l in loop:
-                    opt.update({'loop': l})
-                    result.append(self._build_content(content, picking, opt))
+                    new_opt = copy.deepcopy(opt)
+                    new_opt.update({'loop': l, 'number': len(result) + 1})
+                    result.append(self._build_content(content, picking,
+                        new_opt))
             else:
                 if content:
                     result = self._build_content(content, picking, opt)

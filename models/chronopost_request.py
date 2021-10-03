@@ -333,14 +333,14 @@ SHIPPINGMULTIPARCELV3 = [
                 'src': ('picking.partner_id.phone '
                         'or (picking.partner_id.parent_id '
                             'and picking.partner_id.parent_id.phone) '
-                            'or None'),
+                        'or None'),
                 'default': '',
                 'max_size': 17,
                 },
             {
                 'dst': 'recipientMobilePhone',
                 'src': ('picking.partner_id.mobile '
-                        'and (picking.partner_id.parent_id '
+                        'or (picking.partner_id.parent_id '
                             'and picking.partner_id.parent_id.mobile) '
                         'or None'),
                 'default': '',
@@ -349,7 +349,7 @@ SHIPPINGMULTIPARCELV3 = [
             {
                 'dst': 'recipientEmail',
                 'src': ('picking.partner_id.email '
-                        'and (picking.partner_id.parent_id '
+                        'or (picking.partner_id.parent_id '
                             'and picking.partner_id.parent_id.email) '
                         'or None'),
                 'default': '',

@@ -812,7 +812,7 @@ class ChronopostRequest():
         # Getting data and build the parameters ...
         model = SHIPPINGMULTIPARCELV3
         keys = self._model_keys(model)
-        data = self._build_values(model, picking)
+        data = self._build_values(model, picking.sudo())
 
         # Test required items ...
         required_keys = self._model_keys(model, required=True)

@@ -38,7 +38,6 @@ contains the full copyright notices and license terms. -->
                                         name="cpst_action_get_printer" string="Select a printer"
                                         attrs="{'invisible': [('cpst_direct_printing', '=', False)]}"/>
                             <field name="cpst_printer_name" invisible="1"/>
-                            <field name="cpst_printer_id" attrs="{'invisible': [('cpst_direct_printing', '=', False)]}"/>
                         </group>
                     </group>
                     <group>
@@ -51,7 +50,6 @@ contains the full copyright notices and license terms. -->
                         <group string="Test environment" id="test">
                             <field name="cpst_test_account_number" placeholder="123456" attrs="{'required': [('prod_environment', '!=', True), ('delivery_type', '=', 'chronopost')]}"/>
                             <field name="cpst_test_passwd" password="True" attrs="{'required': [('prod_environment', '!=', True), ('delivery_type', '=', 'chronopost')]}"/>
-                            <!--<field name="cpst_test_sub_account" attrs="{'required': [('delivery_type', '=', 'chronopost')]}"/>-->
                         </group>
                         <group string="URL(s)" id="url1" colspan="4" cols="2">
                             <field name="cpst_shipping_url" placeholder="https://server.com/folder/WebService?wsdl" attrs="{'required': [('delivery_type', '=', 'chronopost')]}"/>
@@ -63,18 +61,5 @@ contains the full copyright notices and license terms. -->
             </xpath>
         </field>
     </record>
-
-    <!--
-    <record id="view_picking_withcarrier_out_form_inherit_delivery_ups" model="ir.ui.view">
-        <field name="name">stock.picking.form.inherit.ups</field>
-        <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='carrier_id']" position="attributes">
-                <attribute name="domain">[('ups_cod', '=', False)]</attribute>
-            </xpath>
-        </field>
-    </record>
-    -->
 </odoo>
 

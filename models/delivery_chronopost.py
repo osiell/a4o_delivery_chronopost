@@ -206,7 +206,7 @@ class ProviderChronopost(models.Model):
                         _('Label_Chronopost.pdf'), labels)]
                 if picking.carrier_id.cpst_direct_printing:
                     self._print_document(labels,
-                        picking.carrier_id.cpst_printer_id, picking)
+                        picking.carrier_id.cpst_printer_id)
             else:
                 for idx, label in enumerate([pl[1] for pl in package_labels]):
                     attachments.append((
@@ -215,7 +215,7 @@ class ProviderChronopost(models.Model):
                             label))
                     if picking.carrier_id.cpst_direct_printing:
                         self._print_document(label,
-                            picking.carrier_id.cpst_printer_id, picking)
+                            picking.carrier_id.cpst_printer_id)
             picking.message_post(body=log_message, attachments=attachments)
 
             shipping_data = {

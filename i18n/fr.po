@@ -2,18 +2,21 @@
 # This file contains the translation of the following modules:
 # 	* a4o_delivery_chronopost
 #
+# Christophe <xt0ph@adiczion.net>, 2022.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-16 13:45+0000\n"
-"PO-Revision-Date: 2021-07-16 13:45+0000\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2022-02-28 17:50+0000\n"
+"PO-Revision-Date: 2022-02-28 18:52+0100\n"
+"Last-Translator: Christophe <xt0ph@adiczion.net>\n"
+"Language-Team: French <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+"Language: fr_FR\n"
+"X-Generator: Lokalize 20.12.0\n"
 
 #. module: a4o_delivery_chronopost
 #: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.view_delivery_carrier_form_with_provider_chronopost
@@ -42,7 +45,7 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #. module: a4o_delivery_chronopost
-#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_product_packaging__package_carrier_type
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_stock_package_type__package_carrier_type
 msgid "Carrier"
 msgstr "Transporteur"
 
@@ -53,7 +56,7 @@ msgstr "Sélectionnez une imprimante"
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__delivery_type__chronopost
-#: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__product_packaging__package_carrier_type__chronopost
+#: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__stock_package_type__package_carrier_type__chronopost
 msgid "Chronopost"
 msgstr ""
 
@@ -171,6 +174,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_cpstselect_printer__display_name
 msgid "Display Name"
 msgstr "Affiche un nom"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_printer
+msgid "Display the name of the selected printer."
+msgstr "Affiche le nom de l'imprimante sélectionnée."
 
 #. module: a4o_delivery_chronopost
 #: code:addons/a4o_delivery_chronopost/models/delivery_chronopost.py:0
@@ -355,6 +363,7 @@ msgstr "Tarif"
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_cpstselect_printer__printer_id
+#: model:ir.model.fields,help:a4o_delivery_chronopost.field_cpstselect_printer__printer_id
 #: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.cpst_select_printer_view_form
 msgid "Printer"
 msgstr "Imprimante"
@@ -373,11 +382,6 @@ msgstr "Options d'impression"
 #: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__product_code
 msgid "Product Code"
 msgstr "Code produit"
-
-#. module: a4o_delivery_chronopost
-#: model:ir.model,name:a4o_delivery_chronopost.model_product_packaging
-msgid "Product Packaging"
-msgstr "Emballage des produits"
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__product_code
@@ -404,8 +408,8 @@ msgid ""
 "Production password, will be used when this carrier has gone 'into "
 "production'."
 msgstr ""
-"Le mot de passe de production sera utilisé lorsque ce transporteur sera entré"
-" « en production »."
+"Le mot de passe de production sera utilisé lorsque ce transporteur sera "
+"entré « en production »."
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_prod_sub_account
@@ -415,7 +419,7 @@ msgstr "Numéro de sous-compte de production, peut rester vide."
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__delivery_type
 msgid "Provider"
-msgstr "Transporteur"
+msgstr "Fournisseur"
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_relaypoint_url
@@ -466,6 +470,11 @@ msgid "Select the printer"
 msgstr "Sélectionnez l'imprimante"
 
 #. module: a4o_delivery_chronopost
+#: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_printer
+msgid "Selected printer"
+msgstr "Imprimante sélectionnée"
+
+#. module: a4o_delivery_chronopost
 #: code:addons/a4o_delivery_chronopost/models/delivery_chronopost.py:0
 #, python-format
 msgid ""
@@ -496,6 +505,11 @@ msgstr "Certains champs sont manquants : %s"
 #, python-format
 msgid "Some products have not been put in packages!"
 msgstr "Certains produits n'ont pas été emballés !"
+
+#. module: a4o_delivery_chronopost
+#: model:ir.model,name:a4o_delivery_chronopost.model_stock_package_type
+msgid "Stock package type"
+msgstr "Type de colis"
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_prod_sub_account
@@ -656,7 +670,6 @@ msgstr ""
 "[base_report_to_printer] est installé."
 
 #. module: a4o_delivery_chronopost
-#: model:ir.model.fields,help:a4o_delivery_chronopost.field_cpstselect_printer__printer_id
 #: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_printer_id
 msgid "printer"
 msgstr "Imprimante"

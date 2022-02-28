@@ -38,6 +38,10 @@ contains the full copyright notices and license terms. -->
                                         name="cpst_action_get_printer" string="Select a printer"
                                         attrs="{'invisible': [('cpst_direct_printing', '=', False)]}"/>
                             <field name="cpst_printer_name" invisible="1"/>
+                            <field name="cpst_printer" force_save="1" attrs="{
+                                'invisible': [('cpst_direct_printing', '=', False)],
+                                'readonly': True,
+                                }"/>
                         </group>
                     </group>
                     <group>

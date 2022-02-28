@@ -22,8 +22,10 @@ class CpstSelectPrinter(models.TransientModel):
         cpst_carrier_id = self.env.context.get('carrier_id')
         if cpst_carrier_id:
             cpst_carrier = self.env['delivery.carrier'].browse(cpst_carrier_id)
-            cpst_carrier.write({
-                    'cpst_printer_id': self.printer_id.id,
-                    'cpst_printer_name': "printing.printer,%s" % (
-                        str(self.printer_id.id)),
-                    })
+            if self.printer_id:
+                cpst_carrier.write({
+                        'cpst_printer_id': self.printer_id.id,
+                        'cpst_printer': self.printer_id.name,
+                        'cpst_printer_name': "printing.printer,%s" % (
+                            str(self.printer_id.id)),
+                        })

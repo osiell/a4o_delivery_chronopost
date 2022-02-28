@@ -85,6 +85,8 @@ class ProviderChronopost(models.Model):
         help="Directly print the label when the delivery is validate,"
              "if the module : report_base_to_printer is installed")
     cpst_printer_name = fields.Char()
+    cpst_printer = fields.Char("Selected printer",
+        help="Display the name of the selected printer.")
     cpst_printer_id = fields.Many2one('printing.printer',
         string='Chronopost Printer',
         compute='cpst_compute_printer_id',
@@ -93,26 +95,32 @@ class ProviderChronopost(models.Model):
         help="Hide the relaypoint address on the partner when created")
 
     @api.onchange('cpst_direct_printing')
-    def onchange_cpst_direct_printing(self):
+    def _onchange_cpst_direct_printing(self):
+        User = self.env['res.users']
         result = {}
         if self.cpst_direct_printing:
-            User = self.env['res.users']
             if not hasattr(User, 'printing_printer_id'):
                 _logger.error('Please install and configure module :'
                               'base_report_to_printer')
                 self.cpst_direct_printing = False
-                result['warning'] = {
+                result.update({'warning': {
                     'title': _('Error!'),
                     'message': _('Please install and configure module :'
                                  'base_report_to_printer')
-                    }
-        return result
+                    }})
+                return result
+        else:
+            # Reset the printer info.
+            self.cpst_printer_name = None
+            self.cpst_printer = None
 
     @api.depends('cpst_printer_name')
     def cpst_compute_printer_id(self):
+        User = self.env['res.users']
         for record in self:
-            record.cpst_printer_id = False
-            if record.cpst_printer_name:
+            record.cpst_printer_id = None
+            if (record.cpst_printer_name
+                    and hasattr(User, 'printing_printer_id')):
                 record.cpst_printer_id = int(
                     record.cpst_printer_name.split(',')[1])
 
@@ -123,7 +131,7 @@ class ProviderChronopost(models.Model):
             'carrier_id': self.id,
             'default_printer_id': (self.cpst_printer_id
                 and self.cpst_printer_id.id
-                or False),
+                or None),
             })
         return {
             'name': _('Select the printer'),

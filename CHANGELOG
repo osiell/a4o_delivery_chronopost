@@ -1,3 +1,6 @@
+Version 15.0.0 - 2022-02-28
+  * Fixed when the 'base_report_to_printer' module is not installed
+  * Port to v15.0
 Version 14.0.4 - 2022-02-28
   * Fixed bug about the lack of base_report_to_printer
 Version 14.0.3 - 2021-10-03

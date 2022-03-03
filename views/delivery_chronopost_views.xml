@@ -31,7 +31,7 @@ contains the full copyright notices and license terms. -->
                             <field name="cpst_direct_printing"/>
                                 <div class="text-muted"
                                         attrs="{'invisible': [('cpst_direct_printing', '=', False)]}">
-                                        open the wizard for selecting a printer if base_report_to_printer module is installed.
+                                        open the wizard for selecting a printer if base_report_to_printer module is installed and the server has been restarted.
                                 </div>
                                 <button type='object' icon="fa-arrow-right" 
                                         class="btn-link"

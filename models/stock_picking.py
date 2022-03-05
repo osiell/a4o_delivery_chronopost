@@ -17,12 +17,6 @@ class StockQuantPackage(models.Model):
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
-    def chronopost_get_delivery_relaypoint(self):
-        self = self.sudo()
-        if self.carrier_id.product_code == '86':
-            return True
-        return False
-
     def cpst_get_names(self, partner_id, original_id=None):
         names = {'name1': partner_id.name, 'name2': ''}
         if partner_id.code_relaypoint:

@@ -277,10 +277,15 @@ class ProviderChronopost(models.Model):
                 })
         return res
 
-    def chronopost_select_relaypoint(self, pickings):
-        _logger.debug('chronopost_select_relaypoint:' % pickings)
+    def chronopost_get_delivery_relaypoint(self):
+        self = self.sudo()
+        if self.product_code == '86':
+            return True
+        return False
+        
+    def chronopost_select_relaypoint(self, **kwargs):
+        _logger.debug('chronopost_select_relaypoint:' % kwargs)
         relaypoints = []
         cpst = ChronopostRequest(self.prod_environment, self.log_xml)
-        for picking in pickings:
-            relaypoints += cpst.relaypoint_request(picking, self.sudo())
-        return relaypoints
+        kwargs.update({'carrier': self.sudo()})
+        return cpst.relaypoint_request(**kwargs)

@@ -184,7 +184,10 @@ class ProviderChronopost(models.Model):
             package_count = len(picking.package_ids)
             if not package_count:
                 raise UserError(_('No packages for this picking!'))
-            shipping = cpst.shipping_request(picking, self.sudo())
+            shipping = cpst.shipping_request(**{
+                'carrier': self.sudo(),
+                'picking': picking,
+                })
             carrier_tracking_ref = shipping['tracking_number']
 
             currency = (

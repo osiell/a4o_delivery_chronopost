@@ -117,7 +117,7 @@ SHIPPINGMULTIPARCELV3 = [
                 },
             {
                 'dst': 'shipperName',
-                'src': 'picking.company_id.partner_id.name',
+                'src': "data['picking'].company_id.partner_id.name",
                 'default': '',
                 'required': True,
                 'max_size': 100,
@@ -130,55 +130,55 @@ SHIPPINGMULTIPARCELV3 = [
             {'dst': 'shipperContactName', 'default': '',},
             {
                 'dst': 'shipperAdress1',
-                'src': 'picking.company_id.partner_id.street',
+                'src': "data['picking'].company_id.partner_id.street",
                 'required': True,
                 'max_size': 38
                 },
             {
                 'dst': 'shipperAdress2',
-                'src': 'picking.company_id.partner_id.street2',
+                'src': "data['picking'].company_id.partner_id.street",
                 'default': '',
                 'max_size': 38,
                 },
             {
                 'dst': 'shipperZipCode',
-                'src': 'picking.company_id.partner_id.zip',
+                'src': "data['picking'].company_id.partner_id.zip",
                 'required': True,
                 'max_size': 9,
                 },
             {
                 'dst': 'shipperCity',
-                'src': 'picking.company_id.partner_id.city',
+                'src': "data['picking'].company_id.partner_id.city",
                 'required': True,
                 'max_size': 50,
                 },
             {
                 'dst': 'shipperCountry',
-                'src': 'picking.company_id.partner_id.country_id.code',
+                'src': "data['picking'].partner_id.country_id.code",
                 'default': 'FR',
                 'required': True,
                 'max_size': 2,
                 },
             {
                 'dst': 'shipperCountryName',
-                'src': 'picking.company_id.partner_id.country_id.name or None',
+                'src': "data['picking'].company_id.partner_id.country_id.name or None",
                 'default': '',
                 },
             {
                 'dst': 'shipperPhone',
-                'src': 'picking.company_id.partner_id.phone',
+                'src': "data['picking'].company_id.partner_id.phone",
                 'default': '',
                 'max_size': 17,
                 },
             {
                 'dst': 'shipperMobilePhone',
-                'src': 'picking.company_id.partner_id.mobile',
+                'src': "data['picking'].company_id.partner_id.mobile",
                 'default': '',
                 'max_size': 17,
                 },
             {
                 'dst': 'shipperEmail',
-                'src': 'picking.company_id.partner_id.email',
+                'src': "data['picking'].company_id.partner_id.email",
                 'default': '',
                 'max_size': 80,
                 },
@@ -198,7 +198,7 @@ SHIPPINGMULTIPARCELV3 = [
                 },
             {
                 'dst': 'customerName',
-                'src': 'picking.company_id.partner_id.name',
+                'src': "data['picking'].company_id.partner_id.name",
                 'required': True,
                 'max_size': 100,
                 },
@@ -210,56 +210,56 @@ SHIPPINGMULTIPARCELV3 = [
             {'dst': 'customerContactName', 'default': '',},
             {
                 'dst': 'customerAdress1',
-                'src': 'picking.company_id.partner_id.street',
+                'src': "data['picking'].company_id.partner_id.street",
                 'default': '',
                 'required': True,
                 'max_size': 38
                 },
             {
                 'dst': 'customerAdress2',
-                'src': 'picking.company_id.partner_id.street2',
+                'src': "data['picking'].company_id.partner_id.street2",
                 'default': '',
                 'max_size': 38,
                 },
             {
                 'dst': 'customerZipCode',
-                'src': 'picking.company_id.partner_id.zip',
+                'src': "data['picking'].company_id.partner_id.zip",
                 'required': True,
                 'max_size': 9,
                 },
             {
                 'dst': 'customerCity',
-                'src': 'picking.company_id.partner_id.city',
+                'src': "data['picking'].company_id.partner_id.city",
                 'required': True,
                 'max_size': 50,
                 },
             {
                 'dst': 'customerCountry',
-                'src': 'picking.company_id.partner_id.country_id.code',
+                'src': "data['picking'].company_id.partner_id.country_id.code",
                 'default': 'FR',
                 'required': True,
                 'max_size': 2,
                 },
             {
                 'dst': 'customerCountryName',
-                'src': 'picking.company_id.partner_id.country_id.name or None',
+                'src': "data['picking'].company_id.partner_id.country_id.name or None",
                 'default': '',
                 },
             {
                 'dst': 'customerPhone',
-                'src': 'picking.company_id.partner_id.phone or None',
+                'src': "data['picking'].company_id.partner_id.phone or None",
                 'default': '',
                 'max_size': 17,
                 },
             {
                 'dst': 'customerMobilePhone',
-                'src': 'picking.company_id.partner_id.mobile or None',
+                'src': "data['picking'].company_id.partner_id.mobile or None",
                 'default': '',
                 'max_size': 17,
                 },
             {
                 'dst': 'customerEmail',
-                'src': 'picking.company_id.partner_id.email',
+                'src': "data['picking'].company_id.partner_id.email",
                 'default': '',
                 'max_size': 80,
                 },
@@ -281,76 +281,76 @@ SHIPPINGMULTIPARCELV3 = [
             #    },
             {
                 'dst': 'recipientName',
-                'src': ('picking.cpst_get_names(picking.partner_id, '
-                    'picking.original_partner_id).get("name1")'),
+                'src': ("data['picking'].cpst_get_names(data['picking'].partner_id, "
+                    "data['picking'].original_partner_id).get('name1')"),
                 'max_size': 100,
                 'required': True,
                 },
             {
                 'dst': 'recipientName2',
-                'src': ('picking.cpst_get_names(picking.partner_id, '
-                    'picking.original_partner_id).get("name2")'),
+                'src': ("data['picking'].cpst_get_names(data['picking'].partner_id, "
+                    "data['picking'].original_partner_id).get('name2')"),
                 'max_size': 100,
                 },
             {
                 'dst': 'recipientAdress1',
-                'src': 'picking.partner_id.street',
+                'src': "data['picking'].partner_id.street",
                 'required': True,
                 'max_size': 38
                 },
             {
                 'dst': 'recipientAdress2',
-                'src': 'picking.partner_id.street2 or None',
+                'src': "data['picking'].partner_id.street2 or None",
                 'default': '',
                 'max_size': 38,
                 },
             {
                 'dst': 'recipientZipCode',
-                'src': 'picking.partner_id.zip',
+                'src': "data['picking'].partner_id.zip",
                 'required': True,
                 'max_size': 9,
                 },
             {
                 'dst': 'recipientCity',
-                'src': 'picking.partner_id.city',
+                'src': "data['picking'].partner_id.city",
                 'required': True,
                 'max_size': 50,
                 },
             {
                 'dst': 'recipientCountry',
-                'src': 'picking.partner_id.country_id.code or None',
+                'src': "data['picking'].partner_id.country_id.code or None",
                 'default': 'FR',
                 'required': True,
                 'max_size': 2,
                 },
             {
                 'dst': 'recipientCountryName',
-                'src': 'picking.partner_id.country_id.name or None',
+                'src': "data['picking'].partner_id.country_id.name or None",
                 'default': '',
                 },
             {
                 'dst': 'recipientPhone',
-                'src': ('picking.partner_id.phone '
-                        'or (picking.partner_id.parent_id '
-                            'and picking.partner_id.parent_id.phone) '
+                'src': ("data['picking'].partner_id.phone "
+                        "or (data['picking'].partner_id.parent_id "
+                            "and data['picking'].partner_id.parent_id.phone) "
                         'or None'),
                 'default': '',
                 'max_size': 17,
                 },
             {
                 'dst': 'recipientMobilePhone',
-                'src': ('picking.partner_id.mobile '
-                        'or (picking.partner_id.parent_id '
-                            'and picking.partner_id.parent_id.mobile) '
+                'src': ("data['picking'].partner_id.mobile "
+                        "or (data['picking'].partner_id.parent_id "
+                            "and data['picking'].partner_id.parent_id.mobile) "
                         'or None'),
                 'default': '',
                 'max_size': 17,
                 },
             {
                 'dst': 'recipientEmail',
-                'src': ('picking.partner_id.email '
-                        'or (picking.partner_id.parent_id '
-                            'and picking.partner_id.parent_id.email) '
+                'src': ("data['picking'].partner_id.email "
+                        "or (data['picking'].partner_id.parent_id "
+                            "and data['picking'].partner_id.parent_id.email) "
                         'or None'),
                 'default': '',
                 'max_size': 80,
@@ -366,28 +366,28 @@ SHIPPINGMULTIPARCELV3 = [
     {
         'struct': 'refValueV2',
         'required': True,
-        'loop': "picking.move_line_ids.mapped('result_package_id')",
+        'loop': "data['picking'].move_line_ids.mapped('result_package_id')",
         'content': [
             {'dst': 'customerSkybillNumber', 'default': '',},
             {'dst': 'PCardTransactionNumber', 'default': '',},
             {
                 'dst': 'recipientRef',
-                'src': ('picking.partner_id.code_relaypoint '
-                        'if picking.carrier_id.product_code == "86" '
-                        'else "%s - %s" % (picking.name, picking.origin)'),
+                'src': ("data['picking'].partner_id.code_relaypoint "
+                        "if data['picking'].carrier_id.product_code == '86' "
+                        "else '%s - %s' % (data['picking'].name, data['picking'].origin)"),
                 'required': True,
                 'max_size': 35,
                 },
             {
                 'dst': 'shipperRef',
-                'src': '"%s - %s" % (picking.name, picking.origin)',
+                'src': "'%s - %s' % (data['picking'].name, data['picking'].origin)",
                 'required': True,
                 'max_size': 35,
                 },
             {
                 'dst': 'idRelais',
-                'src': ('picking.partner_id.code_relaypoint '
-                        'if picking.carrier_id.product_code == "86" '
+                'src': ("data['picking'].partner_id.code_relaypoint "
+                        "if data['picking'].carrier_id.product_code == '86' "
                         'else ""'),
                 'required': True,
                 'max_size': 35,
@@ -398,11 +398,11 @@ SHIPPINGMULTIPARCELV3 = [
     {
         'struct': 'skybillWithDimensionsValueV5',
         'required': True,
-        'loop': "picking.move_line_ids.mapped('result_package_id')",
+        'loop': "data['picking'].move_line_ids.mapped('result_package_id')",
         'content': [
             {
                 'dst': 'bulkNumber',
-                'src': "len(picking.move_line_ids.mapped("
+                'src': "len(data['picking'].move_line_ids.mapped("
                     "'result_package_id'))",
                 'default': '1',
                 },
@@ -414,21 +414,21 @@ SHIPPINGMULTIPARCELV3 = [
             {'dst': 'masterSkybillNumber', 'default': '',},
             {
                 'dst': 'codCurrency',
-                'src': 'picking.company_id.currency_id.name',
+                'src': "data['picking'].company_id.currency_id.name",
                 'default': 'EUR',
                 'required': True,
                 },
             {'dst': 'codValue', 'default': '',},
             {
                 'dst': 'customsCurrency',
-                'src': 'picking.company_id.currency_id.name',
+                'src': "data['picking'].company_id.currency_id.name",
                 'default': 'EUR',
                 'required': True,
                 },
             {'dst': 'customsValue', 'default': '0',},
             {
                 'dst': 'insuredCurrency',
-                'src': 'picking.company_id.currency_id.name',
+                'src': "data['picking'].company_id.currency_id.name",
                 'default': 'EUR',
                 'required': True,
                 },
@@ -455,7 +455,7 @@ SHIPPINGMULTIPARCELV3 = [
                 },
             {
                 'dst': 'productCode',
-                'src': 'picking.carrier_id.product_code',
+                'src': "data['picking'].carrier_id.product_code",
                 'required': True,
                 },
             {
@@ -513,7 +513,7 @@ SHIPPINGMULTIPARCELV3 = [
                 },
             {
                 'dst': 'mode',
-                'src': 'picking.carrier_id.cpst_label_format',
+                'src': "data['picking'].carrier_id.cpst_label_format",
                 'default': 'PDF',
                 'required': True,
                 },
@@ -540,7 +540,7 @@ SHIPPINGMULTIPARCELV3 = [
                 },
             {
                 'dst': 'numberOfParcel',
-                'src': ("len(picking.move_line_ids.mapped("
+                'src': ("len(data['picking'].move_line_ids.mapped("
                         "'result_package_id'))"),
                 'required': True,
                 },
@@ -551,7 +551,7 @@ SHIPPINGMULTIPARCELV3 = [
                 },
             {
                 'dst': 'multiparcel',
-                'src': ("'Y' if len(picking.move_line_ids.mapped("
+                'src': ("'Y' if len(data['picking'].move_line_ids.mapped("
                         "'result_package_id')) > 1 else 'N'"),
                 'required': True,
                 },
@@ -576,25 +576,25 @@ RECHERCHEPOINTCHRONOPOST = [
                 },
             {
                 'dst': 'address',
-                'src': ("picking.partner_id.street "
-                        "or picking.partner_id.street2 "
+                'src': ("data['partner'].street "
+                        "or data['partner'].street2 "
                         "or False"),
                 'required': True,
                 },
             {
                 'dst': 'zipCode',
-                'src': 'picking.partner_id.zip',
+                'src': "data['partner'].zip",
                 'required': True,
                 },
             {
                 'dst': 'city',
-                'src': 'picking.partner_id.city',
+                'src': "data['partner'].city",
                 'required': True,
                 },
             {
                 'dst': 'countryCode',
-                'src': ('picking.partner_id.country_id '
-                        'and picking.partner_id.country_id.code or "FR"'),
+                'src': ("data['partner'].country_id "
+                        "and data['partner'].country_id.code or 'FR'"),
                 'default': 'FR',
                 'required': True,
                 },
@@ -606,7 +606,7 @@ RECHERCHEPOINTCHRONOPOST = [
                 },
             {
                 'dst': 'productCode',
-                'src': 'picking.carrier_id.product_code',
+                'src': "data['carrier'].product_code",
                 'required': True,
                 },
             {
@@ -617,7 +617,7 @@ RECHERCHEPOINTCHRONOPOST = [
                 },
             {
                 'dst': 'weight',
-                'src': "picking.shipping_weight * 1000",
+                'src': "data['weight'] * 1000",
                 'required': True,
                 },
             {
@@ -628,12 +628,12 @@ RECHERCHEPOINTCHRONOPOST = [
                 },
             {
                 'dst': 'maxPointChronopost',
-                'src': "picking.carrier_id.cpst_max_point",
+                'src': "data['carrier'].cpst_max_point",
                 'required': True,
                 },
             {
                 'dst': 'maxDistanceSearch',
-                'src': "picking.carrier_id.cpst_distance_search",
+                'src': "data['carrier'].cpst_distance_search",
                 'required': True,
                 },
             {
@@ -719,7 +719,7 @@ class ChronopostRequest():
             raise UserError(
                 _('Some field are missing: %s') % ', '.join(list(not_present)))
 
-    def _build_value(self, content, picking, options=None):
+    def _build_value(self, content, data, options=None):
         """ """
         value = None
         source = content.get('src')
@@ -734,19 +734,19 @@ class ChronopostRequest():
         value = self._check_conditions(value, content)
         return value
 
-    def _build_content(self, content, picking, options=None):
+    def _build_content(self, content, data, options=None):
         res = {}
         struct = options.get('struct')
         for item in content:
             if struct:
                 setattr(
                     struct, item.get('dst'),
-                    self._build_value(item, picking, options))
+                    self._build_value(item, data, options))
             res.update(
-                {item.get('dst'): self._build_value(item, picking, options)})
+                {item.get('dst'): self._build_value(item, data, options)})
         return struct or res
 
-    def _build_values(self, model, picking, options=None):
+    def _build_values(self, model, data, options=None):
         values = {}
         options = options or {}
         for val in model:
@@ -763,18 +763,18 @@ class ChronopostRequest():
                 for l in loop:
                     new_opt = copy.deepcopy(opt)
                     new_opt.update({'loop': l, 'number': len(result) + 1})
-                    result.append(self._build_content(content, picking,
+                    result.append(self._build_content(content, data,
                         new_opt))
             else:
                 if content:
-                    result = self._build_content(content, picking, opt)
+                    result = self._build_content(content, data, opt)
             if not struct:
                 values.update(result)
             else:
                 values.update({struct: result})
         return values
 
-    def shipping_request(self, picking, carrier):
+    def shipping_request(self,**data):
         """ Removal request to the carrier.
 
             Model of method :
@@ -797,13 +797,14 @@ class ChronopostRequest():
                     customsValue[] customsValue)
         """
         result = {
-            'price': picking.get_delivery_price(),
-            'currency': picking.company_id.currency_id.name,
+            'price': data['picking'].get_delivery_price(),
+            'currency': data['picking'].company_id.currency_id.name,
             }
+        carrier = data['carrier']
 
         if not all([
                 po.result_package_id is not False
-                for po in picking.move_line_ids]):
+                for po in data['picking'].move_line_ids]):
             raise UserError(_("Some products have not been put in packages!"))
 
         # Init. some infos ...
@@ -812,7 +813,7 @@ class ChronopostRequest():
         # Getting data and build the parameters ...
         model = SHIPPINGMULTIPARCELV3
         keys = self._model_keys(model)
-        data = self._build_values(model, picking.sudo())
+        data = self._build_values(model, data)
 
         # Test required items ...
         required_keys = self._model_keys(model, required=True)
@@ -899,16 +900,17 @@ class ChronopostRequest():
                         result.append(number)
         return result
 
-    def relaypoint_request(self, picking, carrier):
+    def relaypoint_request(self, **data):
+        '''Getting relaypoints from the carrier API'''
+        carrier = data['carrier']
+        Country = carrier.env['res.country']
         result = []
-        # Init. some infos ...
+
         self._set_credential(carrier)
         self.client = Client(carrier.cpst_relaypoint_url)
         model = RECHERCHEPOINTCHRONOPOST
-        #self.client = Client(carrier.cpst_shipping_url)
-        #model = SHIPPINGMULTIPARCELV3
         keys = self._model_keys(model)
-        data = self._build_values(model, picking)
+        data = self._build_values(model, data)
         values = [data[key] for key in keys]
         _logger.debug("relaypoint_request: %s" % values)
         try:
@@ -933,6 +935,7 @@ class ChronopostRequest():
                 for point in self.response.listePointRelais:
                     if not point.actif:
                         continue
+                    country = Country.search([('code', '=', point.codePays)])
                     address = {
                         'name': str(point.nom),
                         'street': point.adresse1,
@@ -941,10 +944,10 @@ class ChronopostRequest():
                                 point.adresse2, point.adresse2])),
                         'zip': point.codePostal,
                         'city': point.localite,
-                        'country_id': picking.env['res.country'].search([
-                                ('code', '=', point.codePays),
-                                ]).id,
+                        'country_id': country.id,
                         'code_relaypoint': point.identifiant,
+                        'latitude': point.coordGeolocalisationLatitude,
+                        'longitude': point.coordGeolocalisationLongitude,
                         }
                     hours = [
                         (DAYS[str(x.jour)], x.horairesAsString)

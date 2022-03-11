@@ -1,3 +1,5 @@
+Version 15.1.0 - 2022-03-11
+  * Portage for use with the selection of relay points on the Front
 Version 15.0.0 - 2022-02-28
   * Fixed when the 'base_report_to_printer' module is not installed
   * Port to v15.0

@@ -662,8 +662,8 @@ msgstr ""
 
 #. module: a4o_delivery_chronopost
 #: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.view_delivery_carrier_form_with_provider_chronopost
-msgid "Please refer to the "Module Infos" section to check the requirements for use."
-msgstr "Référez vous à la section "Infos sur le module" pour vérifier les pré-requis d'utilisation."
+msgid "Please refer to the 'Module Infos' section to check the requirements for use."
+msgstr "Référez vous à la section 'Infos sur le module' pour vérifier les pré-requis d'utilisation."
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_printer_id

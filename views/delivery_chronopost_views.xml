@@ -31,7 +31,7 @@ contains the full copyright notices and license terms. -->
                             <field name="cpst_direct_printing"/>
                                 <div class="text-muted"
                                         attrs="{'invisible': [('cpst_direct_printing', '=', False)]}">
-                                        Please refer to the "Module Infos" section to check the requirements for use.
+                                        Please refer to the 'Module Infos' section to check the requirements for use.
                                 </div>
                                 <button type='object' icon="fa-arrow-right" 
                                         class="btn-link"

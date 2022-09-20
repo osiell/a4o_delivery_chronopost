@@ -136,7 +136,7 @@ SHIPPINGMULTIPARCELV3 = [
                 },
             {
                 'dst': 'shipperAdress2',
-                'src': "data['picking'].company_id.partner_id.street",
+                'src': "data['picking'].company_id.partner_id.street2 or None",
                 'default': '',
                 'max_size': 38,
                 },
@@ -154,7 +154,7 @@ SHIPPINGMULTIPARCELV3 = [
                 },
             {
                 'dst': 'shipperCountry',
-                'src': "data['picking'].partner_id.country_id.code",
+                'src': "data['picking'].company_id.country_id.code",
                 'default': 'FR',
                 'required': True,
                 'max_size': 2,
@@ -217,7 +217,7 @@ SHIPPINGMULTIPARCELV3 = [
                 },
             {
                 'dst': 'customerAdress2',
-                'src': "data['picking'].company_id.partner_id.street2",
+                'src': "data['picking'].company_id.partner_id.street2 or None",
                 'default': '',
                 'max_size': 38,
                 },
@@ -387,7 +387,7 @@ SHIPPINGMULTIPARCELV3 = [
             {
                 'dst': 'idRelais',
                 'src': ("data['picking'].partner_id.code_relaypoint "
-                        "if data['picking'].carrier_id.product_code == '86' "
+                        "if data['picking'].carrier_id.cpst_service_type == 'relaypoint' "
                         'else ""'),
                 'required': True,
                 'max_size': 35,
@@ -922,8 +922,8 @@ class ChronopostRequest():
             raise UserError(_('Error from Chronopost API: %s') % (e))
         except Exception as e:
             # if authentification error
-            #if isinstance(e[0], tuple) and e[0][0] == 401:
-                #raise e[0][0]
+            # if isinstance(e[0], tuple) and e[0][0] == 401:
+            #     raise e[0][0]
             raise e
         else:
             _logger.debug('Response code: %s' % self.response.errorCode)

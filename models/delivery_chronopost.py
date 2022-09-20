@@ -320,9 +320,10 @@ class ProviderChronopost(models.Model):
                 })
         return res
 
+    @api.depends('cpst_service_type')
     def chronopost_get_delivery_relaypoint(self):
         self = self.sudo()
-        if self.product_code == '86':
+        if self.cpst_service_type == 'relaypoint':
             return True
         return False
         

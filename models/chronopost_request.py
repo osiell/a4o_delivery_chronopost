@@ -70,7 +70,7 @@ DAYS = {
     '7': _('Sunday'),
     }
 
-SHIPPINGMULTIPARCELV3 = [
+SHIPPINGMULTIPARCELV4 = [
     # esdValue3
     {
         'struct': 'esdValue3',
@@ -778,7 +778,7 @@ class ChronopostRequest():
         """ Removal request to the carrier.
 
             Model of method :
-                shippingMultiParcelV3(
+                shippingMultiParcelV4(
                     esdValue3 esdValue,
                     headerValue headerValue,
                     shipperValueV2[] shipperValue,
@@ -811,7 +811,7 @@ class ChronopostRequest():
         self._set_credential(carrier)
         self.client = Client(carrier.cpst_shipping_url)
         # Getting data and build the parameters ...
-        model = SHIPPINGMULTIPARCELV3
+        model = SHIPPINGMULTIPARCELV4
         keys = self._model_keys(model)
         data = self._build_values(model, data)
 

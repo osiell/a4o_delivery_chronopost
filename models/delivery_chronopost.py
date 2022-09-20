@@ -107,9 +107,7 @@ class ProviderChronopost(models.Model):
     cpst_distance_search = fields.Integer(
         string="Search distance", default=10,
         help="Maximum search distance of relay points in the request.")
-    cpst_direct_printing = fields.Boolean(
-        'Direct Printing',
-        default=False,
+    cpst_direct_printing = fields.Boolean('Direct Printing', default=False,
         help="Directly print the label when the delivery is validate,"
              "if the module : report_base_to_printer is installed")
     cpst_printer_name = fields.Char()
@@ -119,7 +117,7 @@ class ProviderChronopost(models.Model):
         string='Chronopost Printer',
         compute='cpst_compute_printer_id',
         help="printer")
-    hide_partner = fields.Boolean("Hide Relaypoint Address", default=True,
+    hide_partner = fields.Boolean("Hide Reonchange_product_codelaypoint Address", default=True,
         help="Hide the relaypoint address on the partner when created")
 
     @api.onchange('cpst_direct_printing')

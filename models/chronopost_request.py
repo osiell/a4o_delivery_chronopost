@@ -825,9 +825,14 @@ class ChronopostRequest():
                       "%s" % not_present))
 
         values = [data[key] for key in keys]
+        # _logger.debug("relaypoint_request: %s" % values)
         try:
+            # To print XML query (to be continued) ...
+            # self.client.set_options(nosend=True)
             # Beware the query must respect the field order
-            self.response = self.client.service.shippingMultiParcelV3(*values)
+            self.response = self.client.service.shippingMultiParcelV4(*values)
+            # ... to print XML query.
+            # print(self.response.envelope)
         except WebFault as e:
             _logger.error('Error from Chronopost API: %s' % e)
             raise UserError(_('Error from Chronopost API: %s') % (e))

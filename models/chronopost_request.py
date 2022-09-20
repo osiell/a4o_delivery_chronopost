@@ -36,6 +36,15 @@ _logger = logging.getLogger(__name__)
     { ... },
 """
 
+PRODUCT_SERVICE = {
+    ('17'): 'EXPRESS',
+    ('5X'): '2SHOP',
+    ('5H'): 'SHOP2SHOP_EUROPE',
+    ('09'): 'REP',
+    ('44', '4X'): 'CLASSIC',
+    ('*'): 'STD',
+    }
+
 LABEL_FORMAT = [
     ('PDF', 'PDF standard'),
     ('PPR', 'PDF with relay points'),
@@ -460,6 +469,7 @@ SHIPPINGMULTIPARCELV4 = [
                 },
             {
                 'dst': 'service',
+                'src': "self._get_service(data['picking'], options['loop'].shipping_weight)",
                 'default': '0',
                 'required': True,
                 },
@@ -681,6 +691,31 @@ class ChronopostRequest():
                     if item.get('required'):
                         keys.append(key)
         return keys
+
+    def _get_service(self, picking, weight=0.0):
+        service = (picking.carrier_id.cpst_service
+            and picking.carrier_id.cpst_service.code
+            or None)
+        cpst_product_category = picking.carrier_id.get_cpst_product_category()
+        if service == 'computed':
+            if product_code_categ == 'REP':
+                if picking.carrier_id.partner_in_dom_tom(picking.partner_id):
+                    return '237'
+                else:
+                    return '920'
+            elif cpst_product_category == 'CLASSIC':
+                if picking.partner_id.is_company:
+                    if weight > 3.0:
+                        return '101'
+                    else:
+                        return '136'
+                else:
+                    if weight > 3.0:
+                        return '327'
+                    else:
+                        return '328'
+        else:
+            return service
 
     def _chronopost_request(self, service):
         self.client = Client(service)

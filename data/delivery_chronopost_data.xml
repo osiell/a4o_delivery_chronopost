@@ -63,4 +63,51 @@
             <field name="cpst_relaypoint_url">https://ws.chronopost.fr/recherchebt-ws-cxf/PointRelaisServiceWS?wsdl</field>
         </record>
     </data>
+    <data>
+        <record id="chronopost_service_01" model="delivery.carrier.chronopost_service">
+            <field name="name">Normal</field>
+            <field name="code">0</field>
+            <field name="category">STD</field>
+        </record>
+        <record id="chronopost_service_02" model="delivery.carrier.chronopost_service">
+            <field name="name">Monday delivery for Friday departure</field>
+            <field name="code">1</field>
+            <field name="category">STD</field>
+        </record>
+        <record id="chronopost_service_03" model="delivery.carrier.chronopost_service">
+            <field name="name">Saturday delivery for Friday departure</field>
+            <field name="code">6</field>
+            <field name="category">STD</field>
+        </record>
+        <record id="chronopost_service_04" model="delivery.carrier.chronopost_service">
+            <field name="name">Normal</field>
+            <field name="code">0</field>
+            <field name="category">EXPRESS</field>
+        </record>
+        <record id="chronopost_service_05" model="delivery.carrier.chronopost_service">
+            <field name="name">Mandatory to '6' for '2SHOP' products</field>
+            <field name="code">6</field>
+            <field name="category">2SHOP</field>
+        </record>
+        <record id="chronopost_service_06" model="delivery.carrier.chronopost_service">
+            <field name="name">Calculated Service</field>
+            <field name="code">computed</field>
+            <field name="category">REP</field>
+        </record>
+        <record id="chronopost_service_07" model="delivery.carrier.chronopost_service">
+            <field name="name">Calculated Service</field>
+            <field name="code">computed</field>
+            <field name="category">CLASSIC</field>
+        </record>
+        <record id="chronopost_service_08" model="delivery.carrier.chronopost_service">
+            <field name="name">Weekday delivery</field>
+            <field name="code">345</field>
+            <field name="category">SHOP2SHOP_EUROPE</field>
+        </record>
+        <record id="chronopost_service_08" model="delivery.carrier.chronopost_service">
+            <field name="name">Saturday delivery</field>
+            <field name="code">346</field>
+            <field name="category">SHOP2SHOP_EUROPE</field>
+        </record>
+    </data>
 </odoo>

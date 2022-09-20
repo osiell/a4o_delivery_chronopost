@@ -4,7 +4,8 @@
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError
 from odoo.tools import pdf
-from .chronopost_request import ChronopostRequest, LABEL_FORMAT
+from .chronopost_request import (ChronopostRequest, LABEL_FORMAT, 
+    PRODUCT_SERVICE)
 import re
 import logging
 
@@ -26,6 +27,16 @@ class Module(models.Model):
                 return self._button_immediate_function(type(self).button_upgrade)
 
 
+class ChronopostService(models.Model):
+    _name = 'delivery.carrier.chronopost_service'
+    _description = 'Chronopost Service List'
+
+    name = fields.Char('Service Name', translate=True)
+    code = fields.Char('Service code')
+    category = fields.Char('Chronopost Product Category',
+        help="Service category of Chronopost products")
+
+
 class ProviderChronopost(models.Model):
     _inherit = 'delivery.carrier'
 
@@ -35,6 +46,23 @@ class ProviderChronopost(models.Model):
     product_code = fields.Char(
         string='Product Code', groups="base.group_system", size=2,
         help="Product code defined on the contract signed with Chronopost")
+    cpst_product_category = fields.Char('Chronopost Product Category',
+        help="Product code category to apply the correct selection of "
+             "services (technical field).")
+    cpst_service_type = fields.Selection([
+            ('relaypoint', 'Relay point'),
+            ('other', 'Other'),
+            ], string='Service type', default='other',
+        help="Indicates whether the product code used corresponds to a relay "
+             "point or not.")
+    cpst_service = fields.Many2one('delivery.carrier.chronopost_service',
+        string='Service',
+        help="Depending on the product, delivery day requested or "
+             "characteristic of the type of service.")
+    cpst_service_computed = fields.Boolean('Computed Service ?', default=False,
+        help="Indicates whether the service will be calculated or selected "
+             "from the updated list based on the product code (technical "
+             "fields)")
     cpst_prod_account_number = fields.Char(
         string='Account Number (prod.)', groups="base.group_system", size=8,
         help="Production account number, will be used when this carrier has "
@@ -176,6 +204,20 @@ class ProviderChronopost(models.Model):
             self.cpst_test_passwd = self._check_value(
                 self.cpst_test_passwd, 6)
 
+    @api.onchange('product_code')
+    def onchange_product_code(self):
+        self.cpst_product_category = self.get_cpst_product_category()
+        self.cpst_service = None
+        self.cpst_service_computed = False
+        services = self.env['delivery.carrier.chronopost_service'].search([
+            ('category', '=', self.cpst_product_category),
+            ])
+        if len(services) == 1:
+            self.cpst_service = services[0]
+            if services[0].code == 'computed':
+                self.cpst_service_computed = True
+        print(self.get_cpst_product_category())
+
     def chronopost_send_shipping(self, pickings):
         _logger.debug("chronopost_send_shipping: begin")
         res = []
@@ -292,3 +334,12 @@ class ProviderChronopost(models.Model):
         cpst = ChronopostRequest(self.prod_environment, self.log_xml)
         kwargs.update({'carrier': self.sudo()})
         return cpst.relaypoint_request(**kwargs)
+
+    @api.depends('product_code')
+    def get_cpst_product_category(self):
+        service_category = 'STD'
+        print('product:', self.product_code, self.delivery_type, self.name)
+        for key, value in PRODUCT_SERVICE.items():
+            if self.product_code and self.product_code in key:
+                service_category = value
+        return service_category

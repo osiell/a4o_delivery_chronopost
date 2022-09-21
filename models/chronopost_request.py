@@ -569,7 +569,7 @@ SHIPPINGMULTIPARCELV4 = [
         },
     ]
 
-RECHERCHEPOINTCHRONOPOST = [
+RECHERCHEPOINTCHRONOPOSTINTER = [
     {
         'content': [
             {
@@ -948,14 +948,14 @@ class ChronopostRequest():
 
         self._set_credential(carrier)
         self.client = Client(carrier.cpst_relaypoint_url)
-        model = RECHERCHEPOINTCHRONOPOST
+        model = RECHERCHEPOINTCHRONOPOSTINTER
         keys = self._model_keys(model)
         data = self._build_values(model, data)
         values = [data[key] for key in keys]
         _logger.debug("relaypoint_request: %s" % values)
         try:
             # Beware the query must respect the field order
-            self.response = self.client.service.recherchePointChronopost(
+            self.response = self.client.service.recherchePointChronopostInter(
                 *values)
         except WebFault as e:
             _logger.error('Error from Chronopost API: %s' % e)

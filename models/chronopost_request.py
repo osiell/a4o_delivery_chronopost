@@ -748,7 +748,6 @@ class ChronopostRequest():
         must_fields = [k for k,v in model.items() if v.get('required')]
         # Check if all fields are present
         cur_fields = [k for k,v in asdict(value).items() if v != None]
-        print('must:', must_fields, 'have:', cur_fields)
         not_present = set(must_fields) - set(cur_fields)
         if not_present:
             raise UserError(

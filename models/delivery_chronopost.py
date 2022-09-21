@@ -214,7 +214,6 @@ class ProviderChronopost(models.Model):
             self.cpst_service = services[0]
             if services[0].code == 'computed':
                 self.cpst_service_computed = True
-        print(self.get_cpst_product_category())
 
     def chronopost_send_shipping(self, pickings):
         _logger.debug("chronopost_send_shipping: begin")
@@ -337,7 +336,6 @@ class ProviderChronopost(models.Model):
     @api.depends('product_code')
     def get_cpst_product_category(self):
         service_category = 'STD'
-        print('product:', self.product_code, self.delivery_type, self.name)
         for key, value in PRODUCT_SERVICE.items():
             if self.product_code and self.product_code in key:
                 service_category = value

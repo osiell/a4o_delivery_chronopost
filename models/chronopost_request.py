@@ -698,7 +698,7 @@ class ChronopostRequest():
             or None)
         cpst_product_category = picking.carrier_id.get_cpst_product_category()
         if service == 'computed':
-            if product_code_categ == 'REP':
+            if cpst_product_category == 'REP':
                 if picking.carrier_id.partner_in_dom_tom(picking.partner_id):
                     return '237'
                 else:

@@ -79,7 +79,7 @@ DAYS = {
     '7': _('Sunday'),
     }
 
-SHIPPINGMULTIPARCELV4 = [
+SHIPPINGMULTIPARCELV6 = [
     # esdValue3
     {
         'struct': 'esdValue3',
@@ -92,7 +92,8 @@ SHIPPINGMULTIPARCELV4 = [
         'content': [
             {
                 'dst': 'idEmit',
-                'default': '',
+                'default': 'CHRFR',
+                'required': True,
                 },
             {
                 'dst': 'identWebPro',
@@ -126,7 +127,7 @@ SHIPPINGMULTIPARCELV4 = [
                 },
             {
                 'dst': 'shipperName',
-                'src': "data['picking'].company_id.partner_id.name",
+                'src': "data['carrier'].sender_id.name",
                 'default': '',
                 'required': True,
                 'max_size': 100,
@@ -139,55 +140,55 @@ SHIPPINGMULTIPARCELV4 = [
             {'dst': 'shipperContactName', 'default': '',},
             {
                 'dst': 'shipperAdress1',
-                'src': "data['picking'].company_id.partner_id.street",
+                'src': "data['carrier'].sender_id.street",
                 'required': True,
                 'max_size': 38
                 },
             {
                 'dst': 'shipperAdress2',
-                'src': "data['picking'].company_id.partner_id.street2 or None",
+                'src': "data['carrier'].sender_id.street2 or None",
                 'default': '',
                 'max_size': 38,
                 },
             {
                 'dst': 'shipperZipCode',
-                'src': "data['picking'].company_id.partner_id.zip",
+                'src': "data['carrier'].sender_id.zip",
                 'required': True,
                 'max_size': 9,
                 },
             {
                 'dst': 'shipperCity',
-                'src': "data['picking'].company_id.partner_id.city",
+                'src': "data['carrier'].sender_id.city",
                 'required': True,
                 'max_size': 50,
                 },
             {
                 'dst': 'shipperCountry',
-                'src': "data['picking'].company_id.country_id.code",
+                'src': "data['carrier'].sender_id.country_id.code",
                 'default': 'FR',
                 'required': True,
                 'max_size': 2,
                 },
             {
                 'dst': 'shipperCountryName',
-                'src': "data['picking'].company_id.partner_id.country_id.name or None",
+                'src': "data['carrier'].sender_id.country_id.name or None",
                 'default': '',
                 },
             {
                 'dst': 'shipperPhone',
-                'src': "data['picking'].company_id.partner_id.phone",
+                'src': "data['carrier'].sender_id.phone",
                 'default': '',
                 'max_size': 17,
                 },
             {
                 'dst': 'shipperMobilePhone',
-                'src': "data['picking'].company_id.partner_id.mobile",
+                'src': "data['carrier'].sender_id.mobile",
                 'default': '',
                 'max_size': 17,
                 },
             {
                 'dst': 'shipperEmail',
-                'src': "data['picking'].company_id.partner_id.email",
+                'src': "data['carrier'].sender_id.email",
                 'default': '',
                 'max_size': 80,
                 },
@@ -382,7 +383,7 @@ SHIPPINGMULTIPARCELV4 = [
             {
                 'dst': 'recipientRef',
                 'src': ("data['picking'].partner_id.code_relaypoint "
-                        "if data['picking'].carrier_id.product_code == '86' "
+                        "if data['picking'].carrier_id.cpst_service_type == 'relaypoint' "
                         "else '%s - %s' % (data['picking'].name, data['picking'].origin)"),
                 'required': True,
                 'max_size': 35,
@@ -405,7 +406,7 @@ SHIPPINGMULTIPARCELV4 = [
         },
     # skybillWithDimensionsValueV5 [x]
     {
-        'struct': 'skybillWithDimensionsValueV5',
+        'struct': 'skybillWithDimensionsValueV7',
         'required': True,
         'loop': "data['picking'].move_line_ids.mapped('result_package_id')",
         'content': [
@@ -812,7 +813,7 @@ class ChronopostRequest():
         """ Removal request to the carrier.
 
             Model of method :
-                shippingMultiParcelV4(
+                shippingMultiParcelV6(
                     esdValue3 esdValue,
                     headerValue headerValue,
                     shipperValueV2[] shipperValue,
@@ -845,7 +846,7 @@ class ChronopostRequest():
         self._set_credential(carrier)
         self.client = Client(carrier.cpst_shipping_url)
         # Getting data and build the parameters ...
-        model = SHIPPINGMULTIPARCELV4
+        model = SHIPPINGMULTIPARCELV6
         keys = self._model_keys(model)
         data = self._build_values(model, data)
 
@@ -864,7 +865,7 @@ class ChronopostRequest():
             # To print XML query (to be continued) ...
             # self.client.set_options(nosend=True)
             # Beware the query must respect the field order
-            self.response = self.client.service.shippingMultiParcelV4(*values)
+            self.response = self.client.service.shippingMultiParcelV6(*values)
             # ... to print XML query.
             # print(self.response.envelope)
         except WebFault as e:

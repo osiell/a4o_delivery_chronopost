@@ -4,6 +4,7 @@
 # contains the full copyright notices and license terms.
 from odoo.addons.base.tests.common import TransactionCase
 
+
 class TestChronopostCommon(TransactionCase):
     ''' Setup with chronopost test configuration. '''
     @classmethod
@@ -16,19 +17,22 @@ class TestChronopostCommon(TransactionCase):
             'street2': '10 rue jean daret',
             'city': 'Aix en provence',
             'zip': '13090',
-            'country_id': cls.env['res.country'].search([ 
-                ('code','=', 'FR'),]).id,
+            'country_id': cls.env['res.country'].search([
+                ('code', '=', 'FR')]).id,
             'company_id': False,
         })
         cls.product_service_delivery = cls.env['product.product'].search([
-                ('name','=', 'Chronopost Relay (Chrono Relay 13)'),
-            ])
-        cls.delivery_carrier = cls.env['delivery.carrier'].search([
-                ('name','=', 'Chronopost Express'),
-            ])
+                ('name', '=', 'Chronopost Relay (Chrono Relay 13)'),
+                ])
+        cls.delivery = cls.env['delivery.carrier'].search([
+                ('name', '=', 'Chronopost Express'),
+                ])
+        cls.relaypoint_delivery = cls.env['delivery.carrier'].search([
+                ('name', '=', 'Chronopost Express Relais'),
+                ])
         cls.package = cls.env['product.packaging'].search([
-                ('name','=', 'Chronopost Custom Parcel'),
-            ])
+                ('name', '=', 'Chronopost Custom Parcel'),
+                ])
         cls.company_data = {
             # Pricelist
             'default_pricelist': cls.env['product.pricelist'].create({

@@ -860,7 +860,7 @@ class ChronopostRequest():
                       "%s" % not_present))
 
         values = [data[key] for key in keys]
-        # _logger.debug("relaypoint_request: %s" % values)
+        _logger.debug("shipping_request: %s" % values)
         try:
             # To print XML query (to be continued) ...
             # self.client.set_options(nosend=True)

@@ -4,10 +4,8 @@
 from odoo.tests import tagged
 from .common import TestChronopostCommon
 
-
-@tagged('post_install', '-at_install')
-class TestChronopost(TestChronopostCommon):
-    ''' Test the order of a sale with a chronopost shipping method.
+class TestEuropeDelivery(TestChronopostCommon):
+    ''' Setup with chronopost test configuration.
         ./base/odoo-bin -c test.conf -i a4o_delivery_chronopost
         --test-tags /a4o_delivery_chronopost -d db_test --stop-after-init
     '''
@@ -16,15 +14,18 @@ class TestChronopost(TestChronopostCommon):
         super().setUpClass()
 
         cls.delivery_method = cls.env['delivery.carrier'].create({
-            'name': "Chronopost: Chrono 13H",
+            'name': "Chronopost: Express",
             'product_id': cls.env['product.product'].search([
                 ('default_code', '=', 'chrono01'),
                 ])[0].id,
-            'product_code': "01",
+            'product_code': "17",
             'delivery_type': "chronopost",
             'cpst_service_type': "other",
             'cpst_service': (cls.env['delivery.carrier.chronopost_service']
-                .search([('code', '=', "1")])[0].id),
+                .search([
+                    ('code', '=', "0"),
+                    ('category', '=', 'EXPRESS'),
+                    ])[0].id),
             'sender_id': cls.sender.id,
             # Test login proposed by the Chronopost API
             'cpst_test_account_number': cls.company_data['account_number'],
@@ -33,13 +34,16 @@ class TestChronopost(TestChronopostCommon):
             'cpst_tracking_url': cls.company_data['tracking_url'],
             'cpst_relaypoint_url': cls.company_data['relaypoint_url'],
             })
+        cls.package = cls.env['product.packaging'].search([
+                ('name', '=', 'Chronopost Custom Parcel'),
+                ])
 
         SaleOrder = cls.env['sale.order'].with_context(tracking_disable=True)
         # create a generic Sale Order with all classical products
         cls.sale_order = SaleOrder.create({
-            'partner_id': cls.france_customer.id,
-            'partner_invoice_id': cls.france_customer.id,
-            'partner_shipping_id': cls.france_customer.id,
+            'partner_id': cls.europe_customer.id,
+            'partner_invoice_id': cls.europe_customer.id,
+            'partner_shipping_id': cls.europe_customer.id,
             'pricelist_id': cls.company_data['default_pricelist'].id,
         })
         cls.sale_order_line_1 = cls.env['sale.order.line'].create({
@@ -51,11 +55,11 @@ class TestChronopost(TestChronopostCommon):
             'order_id': cls.sale_order.id,
             'tax_id': False,
         })
-
+    
     def test_shipping(self):
-        ''' Test the flow of sales orders through to shipment with
-            the chronopost carrier.
-        '''
+        """ Test the flow of sales orders through to shipment with
+            the chronopost carrier
+        """
         self.sale_order.order_line.read(
             ['name', 'price_unit', 'product_uom_qty', 'price_total'])
         self.sale_order.carrier_id = self.delivery_method.id
@@ -74,7 +78,7 @@ class TestChronopost(TestChronopostCommon):
         self.assertEqual(self.sale_order.delivery_count,
             1.0, 'Delivery: the number of deliveries is wrong')
         self.assertEqual(self.sale_order.picking_ids.carrier_id.name,
-            'Chronopost: Chrono 13H',
+            'Chronopost: Express',
             'Delivery: the delivery carrier is wrong')
         self.assertTrue(self.sale_order.picking_ids.state == 'assigned')
 
@@ -99,4 +103,3 @@ class TestChronopost(TestChronopostCommon):
         self.assertTrue(self.sale_order.picking_ids.state == 'done')
         self.assertTrue(self.sale_order.picking_ids.carrier_tracking_ref,
             'Tracking number: No tracking number for this shipment')
-

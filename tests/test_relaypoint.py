@@ -16,13 +16,13 @@ class TestChronopost(TestChronopostCommon):
         super().setUpClass()
 
         cls.delivery_method = cls.env['delivery.carrier'].create({
-            'name': "Chronopost: Chrono 13H",
+            'name': "Chronopost: Chrono Relais 13H",
             'product_id': cls.env['product.product'].search([
                 ('default_code', '=', 'chrono01'),
                 ])[0].id,
-            'product_code': "01",
+            'product_code': "86",
             'delivery_type': "chronopost",
-            'cpst_service_type': "other",
+            'cpst_service_type': "relaypoint",
             'cpst_service': (cls.env['delivery.carrier.chronopost_service']
                 .search([('code', '=', "1")])[0].id),
             'sender_id': cls.sender.id,
@@ -53,9 +53,9 @@ class TestChronopost(TestChronopostCommon):
         })
 
     def test_shipping(self):
-        ''' Test the flow of sales orders through to shipment with
-            the chronopost carrier.
-        '''
+        """ Test the flow of sales orders through to shipment with
+            the chronopost carrier in relaypoint in France
+        """
         self.sale_order.order_line.read(
             ['name', 'price_unit', 'product_uom_qty', 'price_total'])
         self.sale_order.carrier_id = self.delivery_method.id
@@ -74,7 +74,7 @@ class TestChronopost(TestChronopostCommon):
         self.assertEqual(self.sale_order.delivery_count,
             1.0, 'Delivery: the number of deliveries is wrong')
         self.assertEqual(self.sale_order.picking_ids.carrier_id.name,
-            'Chronopost: Chrono 13H',
+            'Chronopost: Chrono Relais 13H',
             'Delivery: the delivery carrier is wrong')
         self.assertTrue(self.sale_order.picking_ids.state == 'assigned')
 
@@ -93,6 +93,14 @@ class TestChronopost(TestChronopostCommon):
             'Picking: no packages ready to this shipment')
         self.assertEqual(len(self.sale_order.picking_ids.package_ids),
             1.0, 'Picking: number of package made is wrong')
+
+        # choose a relaypoint
+        wiz = self.sale_order.picking_ids.action_get_relaypoint()
+        relaypoint = self.env['delivery.carrier.relaypoint'].with_context(
+            wiz['context']).create({})
+        relaypoint.get_relaypoint()
+        relaypoint = relaypoint.lines[0].set_destination()
+        self.sale_order.picking_ids.relaypoint_delivery = relaypoint
 
         # validate the delivery
         self.sale_order.picking_ids.button_validate()

@@ -20,7 +20,6 @@ contains the full copyright notices and license terms. -->
                 <page string="Chronopost Configuration" attrs="{'invisible': [('delivery_type', '!=', 'chronopost')]}">
                     <group>
                         <group string="Details" id="details">
-                            <field name="relaypoint_delivery" attrs="{'invisible': True}"/>
                             <field name="cpst_product_category" attrs="{'invisible': True}"/>
                             <field name="cpst_service_computed" attrs="{'invisible': True}"/>
                             <field name="product_code" attrs="{'required': [('delivery_type', '=', 'chronopost')]}"/>
@@ -29,9 +28,9 @@ contains the full copyright notices and license terms. -->
                                 domain="[('category', '=', cpst_product_category)]"
                                 attrs="{'invisible': [('cpst_service_computed', '=', True)], 'required': [('delivery_type', '=', 'chronopost'), ('cpst_service_computed', '=', False)]}"
                                 options="{'no_create': True, 'no_create_edit':True}"/>
-                            <field name="cpst_max_point" attrs="{'required': [('delivery_type', '=', 'chronopost'),('relaypoint_delivery', '=', True)], 'invisible': [('relaypoint_delivery', '=', False)]}"/>
-                            <field name="cpst_distance_search" attrs="{'required': [('delivery_type', '=', 'chronopost'), ('relaypoint_delivery', '=', True)], 'invisible': [('relaypoint_delivery', '=', False)]}"/>
-                            <field name="hide_partner" attrs="{'invisible': [('relaypoint_delivery', '=', False)]}"/>
+                            <field name="cpst_max_point" attrs="{'required': [('delivery_type', '=', 'chronopost'),('cpst_service_type', '=', 'relaypoint')], 'invisible': [('cpst_service_type', '!=', 'relaypoint')]}"/>
+                            <field name="cpst_distance_search" attrs="{'required': [('delivery_type', '=', 'chronopost'), ('cpst_service_type', '=', 'relaypoint')], 'invisible': [('cpst_service_type', '!=', 'relaypoint')]}"/>
+                            <field name="hide_partner" attrs="{'invisible': [('cpst_service_type', '!=', 'relaypoint')]}"/>
                         </group>
                         <group string="Printing Options" id="printing_opt">
                             <field name="cpst_label_format" attrs="{'required': [('delivery_type', '=', 'chronopost')]}"/>

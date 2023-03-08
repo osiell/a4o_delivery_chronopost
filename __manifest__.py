@@ -8,10 +8,12 @@
     'category': 'Adiczion',
     'license': 'AGPL-3',
     'depends': [
+        'l10n_fr',
         'delivery',
         'mail',
-        'a4o_delivery_relaypoint'
-    ],
+        'a4o_delivery_common',
+        'a4o_delivery_relaypoint',
+        ],
     'external_dependencies': {'python': ['suds-community']},
     'demo': [],
     'website': 'http://adiczion.com',
@@ -30,7 +32,7 @@ Send your shippings through Chronopost and track them online.
         'views/stock_picking_views.xml',
         'views/res_config_settings_views.xml',
         'wizard/select_printer_views.xml',
-    ],
+        ],
     'images': ['static/description/banner.png'],
     'test': [],
     'installable': True,

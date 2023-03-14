@@ -117,8 +117,6 @@ class ProviderChronopost(models.Model):
         string='Chronopost Printer',
         compute='cpst_compute_printer_id',
         help="printer")
-    hide_partner = fields.Boolean("Hide Reonchange_product_codelaypoint Address", default=True,
-        help="Hide the relaypoint address on the partner when created")
 
     @api.onchange('cpst_direct_printing')
     def _onchange_cpst_direct_printing(self):

@@ -30,7 +30,6 @@ contains the full copyright notices and license terms. -->
                                 options="{'no_create': True, 'no_create_edit':True}"/>
                             <field name="cpst_max_point" attrs="{'required': [('delivery_type', '=', 'chronopost'),('cpst_service_type', '=', 'relaypoint')], 'invisible': [('cpst_service_type', '!=', 'relaypoint')]}"/>
                             <field name="cpst_distance_search" attrs="{'required': [('delivery_type', '=', 'chronopost'), ('cpst_service_type', '=', 'relaypoint')], 'invisible': [('cpst_service_type', '!=', 'relaypoint')]}"/>
-                            <field name="hide_partner" attrs="{'invisible': [('cpst_service_type', '!=', 'relaypoint')]}"/>
                         </group>
                         <group string="Printing Options" id="printing_opt">
                             <field name="cpst_label_format" attrs="{'required': [('delivery_type', '=', 'chronopost')]}"/>

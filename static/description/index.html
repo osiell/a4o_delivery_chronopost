@@ -22,6 +22,7 @@
           <li><i class="fa fa-check text-primary"></i> Return the tracking link.</li>
           <li><i class="fa fa-check text-primary"></i> Cancel your send if needed.</li>
           <li><i class="fa fa-check text-primary"></i> Add a personalized pricing.</li>
+          <li><i class="fa fa-check text-primary"></i> Schedule the availability of delivery methods.</li>
           <li><i class="fa fa-check text-primary"></i> Possibility of direct printing upon validation of an order.</li>
           <li><i class="fa fa-check text-primary"></i> Allows the selection of relay points on the web store (by adding the <a href="https://apps.odoo.com/apps/modules/15.0/a4o_website_delivery_relaypoint/">a4o_website_delivery_relaypoint</a> module).</li>
         </ul>
@@ -35,6 +36,10 @@
 <section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
         <h3 class="oe_slogan">Configuration</h3>
+        <p>Warning ! If you were using the chronopost module before version 15.1.3, 
+        make sure your delivery methods have been updated with the appropriate service type. 
+        To do this, go to your delivery method, change the product code to a random value, add the service type 
+        and the appropriate service, put your product code back in and save.</p>
     </div>
 </section>
 
@@ -85,7 +90,7 @@
     <div class="oe_row oe_spaced">
         <h5 class="oe_slogan">3. Customize and/or add delivery methods</h5>
         <div class="oe_span6">
-            <img class="oe_picture" src="config_method_01.png">
+            <img class="oe_picture" src="conf_method_01.png">
         </div>
         <div class="oe_span6 text-justify oe_mt32">
             <span class="fa fa-sliders fa-2x pull-left"/>
@@ -107,19 +112,34 @@
             </p>
         </div>
         <div class="oe_span6">
-            <img class="oe_picture" src="config_method_02.png">
+            <img class="oe_picture" src="conf_method_02.png">
         </div>
     </div>
     
     <div class="oe_row oe_spaced">
         <div class="oe_span6">
-            <img class="oe_picture" src="config_method_03.png"> 
+            <img class="oe_picture" src="conf_method_03.png"> 
         </div>
         <div class="oe_span6 text-justify oe_mt32">
             <span class="fa fa-sliders fa-2x pull-left"/>
             <p class="oe_mb32" style="margin-left:48px;">
             Then configure it as you like
             </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h5 class="oe_slogan">5. Customize the delivery method availability schedule</h5>
+        <div class="oe_span6 text-justify oe_mt32">
+            <span class="fa fa-sliders fa-2x pull-left"/>
+            <p class="oe_mb32" style="margin-left:48px;">
+            Add a period of availability for the method.
+            </p>
+        </div>
+        <div class="oe_span6">
+            <img class="oe_picture" src="conf_method_04.png">
         </div>
     </div>
 </section>

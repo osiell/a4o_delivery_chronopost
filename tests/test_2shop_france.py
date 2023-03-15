@@ -6,7 +6,7 @@ from .common import TestChronopostCommon
 
 
 @tagged('post_install', '-at_install')
-class TestRelayPoint(TestChronopostCommon):
+class Test2ShopFrance(TestChronopostCommon):
     ''' Test the order of a sale with a chronopost shipping method.
         ./base/odoo-bin -c test.conf -i a4o_delivery_chronopost
         --test-tags /a4o_delivery_chronopost -d db_test --stop-after-init
@@ -16,15 +16,15 @@ class TestRelayPoint(TestChronopostCommon):
         super().setUpClass()
 
         cls.delivery_method = cls.env['delivery.carrier'].create({
-            'name': "Chronopost: Chrono Relais 13H",
+            'name': "Chronopost - 2Shop FR",
             'product_id': cls.env['product.product'].search([
                 ('default_code', '=', 'chrono01'),
                 ])[0].id,
-            'product_code': "86",
+            'product_code': "5E",
             'delivery_type': "chronopost",
             'cpst_service_type': "relaypoint",
             'cpst_service': (cls.env['delivery.carrier.chronopost_service']
-                .search([('code', '=', "1")])[0].id),
+                .search([('code', '=', "6")])[0].id),
             'sender_id': cls.sender.id,
             # Test login proposed by the Chronopost API
             'cpst_test_account_number': cls.company_data['account_number'],
@@ -54,7 +54,8 @@ class TestRelayPoint(TestChronopostCommon):
 
     def test_shipping(self):
         """ Test the flow of sales orders through to shipment with
-            the chronopost carrier in relaypoint in France
+            the chronopost carrier between two shop in France
+            and the product code 5E.
         """
         self.sale_order.order_line.read(
             ['name', 'price_unit', 'product_uom_qty', 'price_total'])
@@ -74,7 +75,7 @@ class TestRelayPoint(TestChronopostCommon):
         self.assertEqual(self.sale_order.delivery_count,
             1.0, 'Delivery: the number of deliveries is wrong')
         self.assertEqual(self.sale_order.picking_ids.carrier_id.name,
-            'Chronopost: Chrono Relais 13H',
+            'Chronopost - 2Shop FR',
             'Delivery: the delivery carrier is wrong')
         self.assertTrue(self.sale_order.picking_ids.state == 'assigned')
 
@@ -107,4 +108,3 @@ class TestRelayPoint(TestChronopostCommon):
         self.assertTrue(self.sale_order.picking_ids.state == 'done')
         self.assertTrue(self.sale_order.picking_ids.carrier_tracking_ref,
             'Tracking number: No tracking number for this shipment')
-

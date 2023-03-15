@@ -46,7 +46,7 @@
             <field name="code">345</field>
             <field name="category">SHOP2SHOP_EUROPE</field>
         </record>
-        <record id="chronopost_service_08" model="delivery.carrier.chronopost_service">
+        <record id="chronopost_service_09" model="delivery.carrier.chronopost_service">
             <field name="name">Saturday delivery</field>
             <field name="code">346</field>
             <field name="category">SHOP2SHOP_EUROPE</field>

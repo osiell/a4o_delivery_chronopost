@@ -66,7 +66,7 @@ class TestChronopostCommon(TransactionCase):
         cls.package = cls.env['product.packaging'].search([
                 ('name', '=', 'Chronopost Custom Parcel'),
                 ])
-           
+
         cls.product = cls.env['product.product'].create({
             'name': 'Product to order',
             'categ_id': cls.company_data['product_category'].id,

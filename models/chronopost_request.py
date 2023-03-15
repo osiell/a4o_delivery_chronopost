@@ -496,6 +496,12 @@ SHIPPINGMULTIPARCELV6 = [
                 'default': 'KGM',
                 #'compute': '_get_weight',
                 },
+            {
+                'dst': 'as', 
+                'src': ("'A15' if data['picking'].carrier_id.cpst_service.code"
+                        " in ('345', '346') else ''"),
+                'default': '',
+                },
             {'dst': 'height', 'default': '0',},
             {'dst': 'length', 'default': '0',},
             {'dst': 'width', 'default': '0',},
@@ -508,7 +514,6 @@ SHIPPINGMULTIPARCELV6 = [
             {'dst': 'longitude', 'default': '',},
             {'dst': 'qualite', 'default': '',},
             {'dst': 'source', 'default': '',},
-            {'dst': 'as', 'default': '',},
             {'dst': 'toTheOrderOf', 'default': '',},
             ],
         },
@@ -611,7 +616,7 @@ RECHERCHEPOINTCHRONOPOSTINTER = [
                 },
             {
                 'dst': 'type',
-                'default': 'T',
+                'default': 'P',
                 'regexp': '[A|B|P|T]',
                 'required': True,
                 },

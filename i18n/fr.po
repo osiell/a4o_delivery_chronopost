@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-20 06:21+0000\n"
-"PO-Revision-Date: 2022-09-20 08:24+0200\n"
+"POT-Creation-Date: 2023-03-15 18:23+0000\n"
+"PO-Revision-Date: 2023-03-15 19:26+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -62,6 +62,8 @@ msgstr "Sélectionnez une imprimante"
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__delivery_type__chronopost
 #: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__stock_package_type__package_carrier_type__chronopost
+#: model:product.product,name:a4o_delivery_chronopost.product_product_delivery_chronopost_13
+#: model:product.template,name:a4o_delivery_chronopost.product_product_delivery_chronopost_13_product_template
 msgid "Chronopost"
 msgstr ""
 
@@ -87,6 +89,12 @@ msgid "Chronopost Dangerous Express"
 msgstr "Chronopost Dangereux Express"
 
 #. module: a4o_delivery_chronopost
+#: model:product.product,name:a4o_delivery_chronopost.product_product_delivery_chronopost
+#: model:product.template,name:a4o_delivery_chronopost.product_product_delivery_chronopost_product_template
+msgid "Chronopost Delivery"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
 #: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.res_config_settings_view_form_sale
 #: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.res_config_settings_view_form_stock
 msgid "Chronopost Delivery Methods"
@@ -95,12 +103,6 @@ msgstr "Modes de livraison Chronopost"
 #. module: a4o_delivery_chronopost
 #: model:delivery.carrier,name:a4o_delivery_chronopost.delivery_carrier_chronopost_express
 msgid "Chronopost Express"
-msgstr ""
-
-#. module: a4o_delivery_chronopost
-#: model:product.product,name:a4o_delivery_chronopost.product_product_delivery_chronopost_13
-#: model:product.template,name:a4o_delivery_chronopost.product_product_delivery_chronopost_13_product_template
-msgid "Chronopost Express (Chrono 13)"
 msgstr ""
 
 #. module: a4o_delivery_chronopost
@@ -135,6 +137,16 @@ msgstr "Liste des services Chronopost"
 #, python-format
 msgid "Chronopost expedition with tracking number %s canceled!"
 msgstr "Expédition Chronopost avec le(s) numéro(s) de suivi %s annulée !"
+
+#. module: a4o_delivery_chronopost
+#: model:delivery.carrier,name:a4o_delivery_chronopost.delivery_carrier_chronopost_chrono13
+msgid "Chronopost: Chrono 13H"
+msgstr ""
+
+#. module: a4o_delivery_chronopost
+#: model:delivery.carrier,name:a4o_delivery_chronopost.delivery_carrier_chronopost_chronorelays13
+msgid "Chronopost: Chrono Relais 13H"
+msgstr ""
 
 #. module: a4o_delivery_chronopost
 #: model_terms:ir.ui.view,arch_db:a4o_delivery_chronopost.res_config_settings_view_form_sale
@@ -247,7 +259,7 @@ msgstr "Erreur lors de la récupération des points relais : %s (%s)"
 #: code:addons/a4o_delivery_chronopost/models/delivery_chronopost.py:0
 #, python-format
 msgid "Error!"
-msgstr ""
+msgstr "Erreur !"
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields.selection,name:a4o_delivery_chronopost.selection__delivery_carrier__cpst_label_format__pdf|xml
@@ -329,8 +341,7 @@ msgstr "Nombre maximum de points relais renvoyés par la demande de recherche."
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_distance_search
-msgid ""
-"Maximum search distance of relay points in the request."
+msgid "Maximum search distance of relay points in the request."
 msgstr "Distance maximale de recherche des points relais."
 
 #. module: a4o_delivery_chronopost
@@ -536,9 +547,9 @@ msgid "Saturday"
 msgstr "Samedi"
 
 #. module: a4o_delivery_chronopost
-#: model:delivery.carrier.chronopost_service,name:a4o_delivery_chronopost.chronopost_service_08
+#: model:delivery.carrier.chronopost_service,name:a4o_delivery_chronopost.chronopost_service_09
 msgid "Saturday delivery"
-msgstr "Livraison samedi"
+msgstr "Livraison le samedi"
 
 #. module: a4o_delivery_chronopost
 #: model:delivery.carrier.chronopost_service,name:a4o_delivery_chronopost.chronopost_service_03
@@ -569,7 +580,7 @@ msgstr "Imprimante sélectionnée"
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_service
 msgid "Service"
-msgstr ""
+msgstr "Service"
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier_chronopost_service__name
@@ -626,7 +637,7 @@ msgstr "Certains produits n'ont pas été emballés !"
 #. module: a4o_delivery_chronopost
 #: model:ir.model,name:a4o_delivery_chronopost.model_stock_package_type
 msgid "Stock package type"
-msgstr ""
+msgstr "Type d'emballage de stock"
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,field_description:a4o_delivery_chronopost.field_delivery_carrier__cpst_prod_sub_account
@@ -719,9 +730,11 @@ msgstr ""
 
 #. module: a4o_delivery_chronopost
 #: model:product.product,uom_name:a4o_delivery_chronopost.product_product_delivery_chrono_relay_13
+#: model:product.product,uom_name:a4o_delivery_chronopost.product_product_delivery_chronopost
 #: model:product.product,uom_name:a4o_delivery_chronopost.product_product_delivery_chronopost_13
 #: model:product.template,uom_name:a4o_delivery_chronopost.product_product_delivery_chrono_relay_13_product_template
 #: model:product.template,uom_name:a4o_delivery_chronopost.product_product_delivery_chronopost_13_product_template
+#: model:product.template,uom_name:a4o_delivery_chronopost.product_product_delivery_chronopost_product_template
 msgid "Units"
 msgstr "Unités"
 
@@ -751,6 +764,11 @@ msgstr "URL WSDL pour le suivi et l'annulation."
 #, python-format
 msgid "Wednesday"
 msgstr "Mercredi"
+
+#. module: a4o_delivery_chronopost
+#: model:delivery.carrier.chronopost_service,name:a4o_delivery_chronopost.chronopost_service_08
+msgid "Weekday delivery"
+msgstr "Livraison en semaine"
 
 #. module: a4o_delivery_chronopost
 #: model:ir.model.fields,help:a4o_delivery_chronopost.field_delivery_carrier__cpst_remove_label

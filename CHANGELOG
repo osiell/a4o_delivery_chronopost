@@ -1,3 +1,6 @@
+Version 15.1.5 - 2023-03-15
+  * Move address masking boolean
+  * Some fixes (see commits for details)
 Version 15.1.4 - 2023-03-08
   * Complete unit tests
   * Some fixes (see commits for details)

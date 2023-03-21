@@ -2,6 +2,7 @@
 # The COPYRIGHT and LICENSE files at the top level of this repository
 # contains the full copyright notices and license terms.
 from odoo.addons.base.tests.common import TransactionCase
+from datetime import datetime
 
 
 class TestChronopostCommon(TransactionCase):
@@ -11,6 +12,9 @@ class TestChronopostCommon(TransactionCase):
         super(TestChronopostCommon, cls).setUpClass()
 
         cls.url_base = "https://ws.chronopost.fr"
+
+        cls.today = datetime.today()
+        cls.today_isoweek = cls.today.isoweekday()
 
         cls.company_data = {
             'account_number': "19869502",
